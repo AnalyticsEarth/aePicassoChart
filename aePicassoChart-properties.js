@@ -973,6 +973,7 @@ define(['./buildpicasso'], function(bp) {
       templates: {
         type: "items",
         label: "Chart Templates",
+        show:false,
         items: {
           templatepick: {
             type: "string",
@@ -1332,7 +1333,7 @@ define(['./buildpicasso'], function(bp) {
           about3:{
             type:"string",
             component:"text",
-            label:"Picasso Designer is an extension to aid building complex charts based on the Picasso.JS library without having to write any code or understand the picasso JSON strucutre. The extension also provides support for selections against the chart for the expected user experience in Qlik Sense."
+            label:"Picasso Designer is an extension to aid building complex charts based on the Picasso.JS library without having to write any code or understand the picasso JSON structure. The extension also provides support for selections against the chart for the expected user experience in Qlik Sense."
           }
         }
       },

@@ -55,27 +55,6 @@ define([
             first = true;
 
 
-
-            /*      this.chartBrush = this.chart.brush('lasso-example');
-
-          this.chartBrush.on('end', () => {
-            //console.log("Finished");
-          });
-
-          this.chartBrush.on('update', (added, removed) => {
-            //console.log(this.chartBrush);
-            //console.log(added);
-            //console.log(removed);
-            //console.log(this.chartBrush.isActive());
-            const selections = [].concat(added, removed).map(v => v.values);
-            //console.log(selections);
-            this.selectValues(0, selections, false);
-            //this.chartBrush.end();
-          });
-
-
-
-  */
           }
 
           if (qlik.navigation.getMode() == 'edit' || first) {

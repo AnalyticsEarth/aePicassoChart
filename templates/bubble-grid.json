@@ -1,0 +1,113 @@
+{
+  "info": {
+    "version": "0.1",
+    "exportDate": "2018-06-19T15:35:42.920Z"
+  },
+  "chartspec": {
+    "scales": [{
+      "scalename": "x",
+      "scalefield": "qDimensionInfo/1",
+      "scaleinvert": false,
+      "scaletype": "",
+      "scaleinclude": "",
+      "scaleexpand": 0,
+      "scalepadding": 0,
+      "cId": "bxpGsjM"
+    }, {
+      "scalename": "y",
+      "scalefield": "qDimensionInfo/0",
+      "scaleinvert": false,
+      "scaletype": "",
+      "scaleinclude": "",
+      "scaleexpand": 0,
+      "scalepadding": 0,
+      "cId": "uPFmtMD"
+    }, {
+      "scalename": "c",
+      "scalefield": "qMeasureInfo/0",
+      "scaleinvert": false,
+      "scaletype": "color",
+      "scaleinclude": "0",
+      "scaleexpand": 0,
+      "scalepadding": 0,
+      "cId": "YWKYKdU"
+    }],
+    "components": {
+      "axis": [{
+        "axisscale": "x",
+        "axisdock": "bottom",
+        "axislabelmode": "tilted",
+        "axistiltangle": 45,
+        "cId": "RpJK",
+        "dockeditemtype": "axis"
+      }, {
+        "axisscale": "y",
+        "axisdock": "left",
+        "axislabelmode": "auto",
+        "axistiltangle": 0,
+        "cId": "pgTnV",
+        "dockeditemtype": "axis"
+      }, {
+        "dockeditemtype": "legend",
+        "axisscale": "c",
+        "axisdock": "top",
+        "axislabelmode": "auto",
+        "axistiltangle": 0,
+        "legendtype": "legend-seq",
+        "colorscale": "c",
+        "cId": "vsabHhE"
+      }],
+      "layers": [{
+        "layertype": "point",
+        "layername": "p1",
+        "layershow": true,
+        "linetype": "line",
+        "boxtype": "bar",
+        "layerscale1": "x",
+        "layerfield1": "d0",
+        "layerscale2": "y",
+        "layerfield2": "d1",
+        "layerscale3": "c",
+        "layerfield3": "m0",
+        "layerscale4": "",
+        "layerfield4": "",
+        "layerscale5": "",
+        "layerfield5": "",
+        "layerscale6": "",
+        "layerfield6": "",
+        "layerscale7": "",
+        "layerfield7": "",
+        "orientation": "vertical",
+        "showpresentation": true,
+        "layercurve": "linear",
+        "primarycolor": {
+          "index": 3
+        },
+        "primarywidth": 1,
+        "primaryopacity": 1,
+        "primarydashpattern": "",
+        "secondarycolor": {
+          "index": 3
+        },
+        "secondarywidth": 1,
+        "secondaryopacity": 1,
+        "thirdcolor": {
+          "index": 1
+        },
+        "thirdwidth": 1,
+        "forthcolor": {
+          "index": 1
+        },
+        "forthwidth": 1,
+        "fifthcolor": {
+          "index": 1
+        },
+        "fifthwidth": 1,
+        "showpointtype": true,
+        "pointshape": "circle",
+        "pointsize": 1,
+        "cId": "arSeq"
+      }]
+    }
+  }
+}

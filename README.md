@@ -8,13 +8,13 @@ Picasso Designer is an extension to aid building complex charts based on the Pic
 1. Created the axis as a docked item
 1. Add a layer for each chart item needed, choice from (Line, Bar, Point, Pie, Grid)
 
-## Supports in BETA v0.1.0
-# Single Dimension Line, Bar. Point and Pie charts
-# 2 Dimension Point Layer
-# Dimension selection and range selection on dimension axis
+## Support in BETA v0.1.0
+* Single Dimension Line, Bar. Point and Pie charts
+* 2 Dimension Point Layer
+* Dimension selection and range selection on dimension axis
 
 ## Support planned
-# Stacked lines and bars
-# Range selection on measure axis
-# Lasso selection
-# Chart templates
+* Stacked lines and bars
+* Range selection on measure axis
+* Lasso selection
+* Chart templates

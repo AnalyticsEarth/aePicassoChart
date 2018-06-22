@@ -566,7 +566,10 @@ return pie;
 
     if (!pointDef.showpointtype) {
       point.settings.shape = pointDef.pointshape;
-      point.settings.size = pointDef.pointsize;
+      if(pointDef.layerfield4 == ""){
+        point.settings.size = pointDef.pointsize;
+      }
+
     }
 
     if (displayCount >= 2) {

@@ -105,42 +105,48 @@ define(['jquery', './node_modules/picasso-plugin-q/dist/picasso-q'], function($,
   //Axis Component - Note this creates two picasso components
   var createAxis = function(axisDef, hypercube, scalesDef) {
     var scaleIndex = scalesDef.map(e => e.scalename).indexOf(axisDef.axisscale);
-    var axisFieldDef = scalesDef[scaleIndex].scalefield;
-    var dimMes = axisFieldDef.split("/");
+    //console.log(scaleIndex);
+    if(scaleIndex != -1){
+      var axisFieldDef = scalesDef[scaleIndex].scalefield;
+      var dimMes = axisFieldDef.split("/");
 
-    var axisTitle = {
-      type: 'text',
-      text: hypercube[dimMes[0]][dimMes[1]].qFallbackTitle,
-      style: {
-        text: {
-          fontSize: '13px',
-          fontFamily: '"QlikView Sans", sans-serif'
-        }
-      },
-      dock: axisDef.axisdock
-    };
-    var axis = {
-      key: axisDef.axisdock + "_" + axisDef.axisscale,
-      type: 'axis',
-      scale: axisDef.axisscale,
-      dock: axisDef.axisdock,
-      settings: {
-        labels: {
-          mode: axisDef.axislabelmode,
-        }
-      },
-    };
+      var axisTitle = {
+        type: 'text',
+        text: hypercube[dimMes[0]][dimMes[1]].qFallbackTitle,
+        style: {
+          text: {
+            fontSize: '13px',
+            fontFamily: '"QlikView Sans", sans-serif'
+          }
+        },
+        dock: axisDef.axisdock
+      };
+      var axis = {
+        key: axisDef.axisdock + "_" + axisDef.axisscale,
+        type: 'axis',
+        scale: axisDef.axisscale,
+        dock: axisDef.axisdock,
+        settings: {
+          labels: {
+            mode: axisDef.axislabelmode,
+          }
+        },
+      };
 
-    if (axisDef.axislabelmode == "tilted") {
-      axis.settings.labels.tiltAngle = axisDef.axistiltangle;
-    }
+      if (axisDef.axislabelmode == "tilted") {
+        axis.settings.labels.tiltAngle = axisDef.axistiltangle;
+      }
 
-    if(dimMes[0] == "qDimensionInfo"){
-      var brush = createRangeBrush(axisDef);
-      return [axis, axisTitle, brush];
+      if(dimMes[0] == "qDimensionInfo"){
+        var brush = createRangeBrush(axisDef);
+        return [axis, axisTitle, brush];
+      }else{
+        return [axis, axisTitle];
+      }
     }else{
-      return [axis, axisTitle];
+      return null;
     }
+
 
   };
 

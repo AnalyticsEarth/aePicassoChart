@@ -2,6 +2,8 @@
 
 Picasso Designer is an extension to aid building complex charts based on the Picasso.JS library without having to write any code or understand the Picasso JSON structure. The extension also provides support for selections against the chart for the expected user experience in Qlik Sense.
 
+Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
+
 ## How to create a chart
 1. Add Data, Dimension and Measures
 1. Create the scales required

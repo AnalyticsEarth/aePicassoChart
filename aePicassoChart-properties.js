@@ -1323,7 +1323,7 @@ define(['./buildpicasso'], function(bp) {
           about1a:{
             type:"string",
             component:"text",
-            label:"BETA: v0.1.0"
+            label:"BETA: v0.1.1"
           },
           about2:{
             type:"string",

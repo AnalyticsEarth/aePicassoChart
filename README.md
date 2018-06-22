@@ -8,8 +8,12 @@ Picasso Designer is an extension to aid building complex charts based on the Pic
 1. Created the axis as a docked item
 1. Add a layer for each chart item needed, choice from (Line, Bar, Point, Pie, Grid)
 
-## Support in BETA v0.1.0
-* Single Dimension Line, Bar. Point and Pie charts
+##Support in BETA v0.1.1 - 22/06/2018
+* Chart Templates
+* Grid Layer
+
+## Support in BETA v0.1.0 - 21/06/2018
+* Single Dimension Line, Bar, Point and Pie charts
 * 2 Dimension Point Layer
 * Dimension selection and range selection on dimension axis
 
@@ -17,4 +21,19 @@ Picasso Designer is an extension to aid building complex charts based on the Pic
 * Stacked lines and bars
 * Range selection on measure axis
 * Lasso selection
-* Chart templates
+
+## Examples of Charts built in BETA
+### Combo Chart and Pie
+![Combo and Pie](https://github.com/AnalyticsEarth/data/raw/master/Random-Combo.png)
+
+### Line and Point
+![Line and Point](https://github.com/AnalyticsEarth/data/raw/master/LineandPoint.png)
+
+### Scatter & Trend Line
+![Scatter and Trend Line](https://github.com/AnalyticsEarth/data/raw/master/Scatter.png)
+
+### Bubble Grid
+![Bubble Grid](https://github.com/AnalyticsEarth/data/raw/master/bubble-grid.png)
+
+### Crazy & Wrong Combos!!!
+![Crazy Chart](https://github.com/AnalyticsEarth/data/raw/master/crazy.png)

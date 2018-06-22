@@ -1,12 +1,12 @@
 {
   "info": {
     "version": "0.1",
-    "exportDate": "2018-06-19T15:35:42.920Z"
+    "exportDate": "2018-06-22T17:37:33.054Z"
   },
   "chartspec": {
     "scales": [{
       "scalename": "x",
-      "scalefield": "qDimensionInfo/1",
+      "scalefield": "qDimensionInfo/0",
       "scaleinvert": false,
       "scaletype": "",
       "scaleinclude": "",
@@ -15,7 +15,7 @@
       "cId": "bxpGsjM"
     }, {
       "scalename": "y",
-      "scalefield": "qDimensionInfo/0",
+      "scalefield": "qDimensionInfo/1",
       "scaleinvert": false,
       "scaletype": "",
       "scaleinclude": "",

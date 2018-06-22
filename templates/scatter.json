@@ -1,0 +1,165 @@
+{
+  "info": {
+    "version": "0.1",
+    "exportDate": "2018-06-22T17:59:00.229Z"
+  },
+  "chartspec": {
+    "scales": [{
+      "scalename": "x",
+      "scalefield": "qMeasureInfo/0",
+      "scaleinvert": false,
+      "scaletype": "linear",
+      "scaleinclude": "0",
+      "scaleexpand": 0.03,
+      "scalepadding": 0,
+      "cId": "heQWUs"
+    }, {
+      "scalename": "y",
+      "scalefield": "qMeasureInfo/1",
+      "scaleinvert": true,
+      "scaletype": "linear",
+      "scaleinclude": "0",
+      "scaleexpand": 0.03,
+      "scalepadding": 0,
+      "cId": "jmdcgx"
+    }],
+    "components": {
+      "axis": [{
+        "dockeditemtype": "axis",
+        "axisscale": "x",
+        "axisdock": "bottom",
+        "axislabelmode": "auto",
+        "axistiltangle": 0,
+        "legendtype": "legend-cat",
+        "colorscale": "",
+        "cId": "HWZJ"
+      }, {
+        "dockeditemtype": "axis",
+        "axisscale": "y",
+        "axisdock": "left",
+        "axislabelmode": "auto",
+        "axistiltangle": 0,
+        "legendtype": "legend-cat",
+        "colorscale": "",
+        "cId": "WTDKU"
+      }],
+      "layers": [{
+        "layertype": "grid",
+        "layername": "Grid",
+        "layershow": true,
+        "linetype": "line",
+        "boxtype": "bar",
+        "layerscale1": "x",
+        "layerfield1": "",
+        "layerscale2": "y",
+        "layerfield2": "",
+        "layerscale3": "",
+        "layerfield3": "",
+        "layerscale4": "",
+        "layerfield4": "",
+        "layerscale5": "",
+        "layerfield5": "",
+        "layerscale6": "",
+        "layerfield6": "",
+        "layerscale7": "",
+        "layerfield7": "",
+        "orientation": "vertical",
+        "showpresentation": true,
+        "layercurve": "linear",
+        "primarycolor": {
+          "index": 3
+        },
+        "primarywidth": 1,
+        "primaryopacity": 1,
+        "primarydashpattern": "",
+        "secondarycolor": {
+          "index": 3
+        },
+        "secondarywidth": 1,
+        "secondaryopacity": 1,
+        "thirdcolor": {
+          "index": 1
+        },
+        "thirdwidth": 1,
+        "forthcolor": {
+          "index": 1
+        },
+        "forthwidth": 1,
+        "fifthcolor": {
+          "index": 1
+        },
+        "fifthwidth": 1,
+        "showpointtype": true,
+        "pointshape": "circle",
+        "pointsize": 1,
+        "showgridx": true,
+        "showgridy": true,
+        "showgridtickmajor": true,
+        "showgridtickminor": true,
+        "piepadangle": 0,
+        "pieouterradius": 1,
+        "pieinnerradius": 0,
+        "piecornerradius": 0,
+        "cId": "Bhczet"
+      }, {
+        "layertype": "point",
+        "layername": "Scatter",
+        "layershow": true,
+        "linetype": "line",
+        "boxtype": "bar",
+        "layerscale1": "x",
+        "layerfield1": "m0",
+        "layerscale2": "y",
+        "layerfield2": "m1",
+        "layerscale3": "",
+        "layerfield3": "",
+        "layerscale4": "",
+        "layerfield4": "",
+        "layerscale5": "",
+        "layerfield5": "",
+        "layerscale6": "",
+        "layerfield6": "",
+        "layerscale7": "",
+        "layerfield7": "",
+        "orientation": "vertical",
+        "showpresentation": true,
+        "layercurve": "linear",
+        "primarycolor": {
+          "index": 3
+        },
+        "primarywidth": 1,
+        "primaryopacity": 1,
+        "primarydashpattern": "",
+        "secondarycolor": {
+          "index": 3
+        },
+        "secondarywidth": 1,
+        "secondaryopacity": 1,
+        "thirdcolor": {
+          "index": 1
+        },
+        "thirdwidth": 1,
+        "forthcolor": {
+          "index": 1
+        },
+        "forthwidth": 1,
+        "fifthcolor": {
+          "index": 1
+        },
+        "fifthwidth": 1,
+        "showpointtype": false,
+        "pointshape": "circle",
+        "pointsize": 0.2,
+        "showgridx": true,
+        "showgridy": true,
+        "showgridtickmajor": true,
+        "showgridtickminor": true,
+        "piepadangle": 0,
+        "pieouterradius": 1,
+        "pieinnerradius": 0,
+        "piecornerradius": 0,
+        "cId": "jMrVjS"
+      }]
+    }
+  }
+}

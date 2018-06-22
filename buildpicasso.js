@@ -2,11 +2,15 @@ define(['jquery',
         './node_modules/picasso-plugin-q/dist/picasso-q',
         'text!./templates/bar.json',
         'text!./templates/line.json',
-      ], function($, pq, charttemplate_bar, charttemplate_line) {
+        'text!./templates/bubble-grid.json',
+        'text!./templates/scatter.json'
+      ], function($, pq, charttemplate_bar, charttemplate_line, charttemplate_bubblegrid, charttemplate_scatter) {
 
         var charts = {};
         charts['bar'] = charttemplate_bar;
         charts['line'] = charttemplate_line;
+        charts['bubble-grid'] = charttemplate_bubblegrid;
+        charts['scatter'] = charttemplate_scatter;
 
 
   //Create Collection
@@ -18,7 +22,6 @@ define(['jquery',
       key: 'hypercubeCollection',
       data: {
         extract: {
-          field: 'qDimensionInfo/0',
           props: {
 
           }
@@ -28,9 +31,16 @@ define(['jquery',
 
     //needs to support multiple dimensions in next phase
     hypercube.qDimensionInfo.forEach((d, i) => {
+      if(i == 0){
+        collection.data.extract.field = 'qDimensionInfo/' + i;
+        //collection.data.extract.trackBy = (v) => {return v.qElemNumber;};
+      }
       collection.data.extract.props['d' + i] = {
-        field: 'qDimensionInfo/' + i
-      };
+        field: 'qDimensionInfo/' + i,
+
+      }; //trackBy: (v) => {return v.qElemNumber;}
+
+
     });
     hypercube.qMeasureInfo.forEach((m, i) => {
       collection.data.extract.props['m' + i] = {
@@ -876,12 +886,17 @@ return pie;
   var importChart = function(chartspec, picassoprops, save) {
     //TODO: This will be to import the chart from an archive file
     if(chartspec != 'custom'){
-      var response = JSON.parse(charts[chartspec]);
-      if (save) {
-        picassoprops.scalesDef = response.chartspec.scales;
-        picassoprops.componentsDef = response.chartspec.components;
+      try{
+        var response = JSON.parse(charts[chartspec]);
+        if (save) {
+          picassoprops.scalesDef = response.chartspec.scales;
+          picassoprops.componentsDef = response.chartspec.components;
+        }
+      }catch(e){
+
       }
-    } 
+
+    }
   };
 
   return {

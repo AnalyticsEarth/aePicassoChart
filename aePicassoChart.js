@@ -71,6 +71,7 @@ define([
               interactions: interactionsDef
             };
             //console.log(settings);
+            //console.log(JSON.stringify(settings));
 
             /*****************************************************************************************************
             /*** Having to recreate the chart as when updating the settings the line layer does not refresh (might be bug in picasso)

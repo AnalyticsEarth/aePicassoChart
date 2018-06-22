@@ -8,7 +8,7 @@ define([
     function(qlik, properties, picasso, pq, bp) {
 
       picasso.use(pq)
-      //picasso.renderer.prio(["canvas"])
+      picasso.renderer.prio(["canvas"])
 
       return {
         initialProperties: {

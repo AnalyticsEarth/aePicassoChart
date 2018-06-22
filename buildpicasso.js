@@ -646,6 +646,7 @@ return pie;
   }
 
   var interactionsSetup = function(intDef) {
+    "use strict";
     let rangeRef = 'rangeY';
     var interactions = [{
       type: 'native',
@@ -762,23 +763,29 @@ return pie;
       });
     }
     hypercubedef.qDimensions.forEach((d, i) => {
-      var labelVal = d.qDef.qFieldLabels[d.qDef.qActiveField];
-      if (labelVal == '') labelVal = d.qDef.qFieldDefs[d.qDef.qActiveField];
+      //console.log(d);
+      var labelVal = 'Dim ' + i + ': ' + d.qDef.qFieldLabels[d.qDef.qActiveField];
+      if (labelVal.trim().slice(-1) == ':') labelVal = 'Dim ' + i + ': ' + d.qDef.qFieldDefs[d.qDef.qActiveField];
+      //console.log(labelVal);
+      if(labelVal.slice(-9) == 'undefined') labelVal = 'Dimension ' + i;
       var valueVal = 'qDimensionInfo/' + i;
       if (valueType == 1) valueVal = 'd' + i;
+      if (valueType == 2) valueVal = i;
       list.push({
         value: valueVal,
-        label: 'Dim ' + i + ': ' + labelVal
+        label: labelVal
       });
     });
     hypercubedef.qMeasures.forEach((m, i) => {
-      var labelVal = m.qDef.qLabel;
-      if (labelVal == "") labelVal = m.qDef.qDef;
+      var labelVal = 'Mes ' + i + ': ' + m.qDef.qLabel;
+      if (labelVal.trim().slice(-1) == ':') labelVal = 'Mes ' + i + ': ' + m.qDef.qDef;
+      //console.log(labelVal);
+      if(labelVal.trim().slice(-1) == ':') labelVal = 'Measure ' + i;
       var valueVal = 'qMeasureInfo/' + i;
       if (valueType == 1) valueVal = 'm' + i;
       list.push({
         value: valueVal,
-        label: 'Mes ' + i + ': ' + labelVal
+        label: labelVal
       });
     });
     return list;
@@ -787,14 +794,15 @@ return pie;
   var optionsListForDimensionsDef = function(hypercubedef, valueType) {
     var list = [];
     hypercubedef.qDimensions.forEach((d, i) => {
-      var labelVal = d.qDef.qFieldLabels[d.qDef.qActiveField];
+      var labelVal = 'Dim ' + i + ': ' + d.qDef.qFieldLabels[d.qDef.qActiveField];
+      if (labelVal == '') labelVal = 'Dim ' + i + ': ' + d.qDef.qFieldDefs[d.qDef.qActiveField];
+      if(typeof labelVal == 'undefined') labelVal = 'Dimension ' + i;
       var valueVal = 'qDimensionInfo/' + i;
       if (valueType == 1) valueVal = 'd' + i;
       if (valueType == 2) valueVal = i;
       list.push({
         value: valueVal,
-        label: 'Dim ' + i + ': ' + labelVal
-
+        label: labelVal
       });
     });
     return list;

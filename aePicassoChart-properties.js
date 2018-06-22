@@ -180,14 +180,14 @@ define(['./buildpicasso'], function(bp) {
         }
       },
       layerscale1: {
-        label: "Major Scale",
+        label: "Major Scale (Dimension)",
         show: {
           field: "layertype",
           values: ["box"]
         }
       },
       layerscale2: {
-        label: "Minor Scale",
+        label: "Minor Scale (Measure)",
         show: {
           field: "layertype",
           values: ["box"]

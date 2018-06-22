@@ -1,4 +1,14 @@
-define(['jquery', './node_modules/picasso-plugin-q/dist/picasso-q'], function($, pq) {
+define(['jquery',
+        './node_modules/picasso-plugin-q/dist/picasso-q',
+        'text!./templates/bar.json',
+        'text!./templates/line.json',
+      ], function($, pq, charttemplate_bar, charttemplate_line) {
+
+        var charts = {};
+        charts['bar'] = charttemplate_bar;
+        charts['line'] = charttemplate_line;
+
+
   //Create Collection
   var createCollections = function(hypercube) {
     //Create Collection Array
@@ -865,26 +875,13 @@ return pie;
 
   var importChart = function(chartspec, picassoprops, save) {
     //TODO: This will be to import the chart from an archive file
-    console.log("Import Template for:" + chartspec);
-
-    /*  $.ajax({
-        url: '../extensions/aePicassoChart/templates/'+ chartspec + '.json',
-        dataType:"json",
-        async:false,
-        sucess: (x) => {
-          console.log(x);
-        }
-      });*/
-
-    require(['text!../extensions/aePicassoChart/templates/' + chartspec + '.json'], (specdata) => {
-      var response = JSON.parse(specdata);
+    if(chartspec != 'custom'){
+      var response = JSON.parse(charts[chartspec]);
       if (save) {
         picassoprops.scalesDef = response.chartspec.scales;
         picassoprops.componentsDef = response.chartspec.components;
       }
-
-    });
-
+    } 
   };
 
   return {

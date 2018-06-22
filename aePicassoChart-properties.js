@@ -973,7 +973,6 @@ define(['./buildpicasso'], function(bp) {
       templates: {
         type: "items",
         label: "Chart Templates",
-        show:false,
         items: {
           templatepick: {
             type: "string",
@@ -1017,7 +1016,7 @@ define(['./buildpicasso'], function(bp) {
                 labelPlacement: "bottom",
                 label: "Bubble Grid"
               },
-              {
+          /*    {
                 value: "area",
                 component: "icon-item",
                 icon: "ø",
@@ -1030,7 +1029,7 @@ define(['./buildpicasso'], function(bp) {
                 icon: "˛",
                 labelPlacement: "bottom",
                 label: "Combo"
-              }
+              }*/
             ],
             change: (x, y) => {
               console.log(x.picassoprops.loadtemplate);
@@ -1060,6 +1059,7 @@ define(['./buildpicasso'], function(bp) {
             type: "string",
             component: "button",
             label: "Export Current Chart Spec",
+            show: (x) => {return x.picassoprops.enableexp},
             action: (x) => {
               console.log(x);
               bp.exportChart(x.picassoprops);
@@ -1334,6 +1334,12 @@ define(['./buildpicasso'], function(bp) {
             type:"string",
             component:"text",
             label:"Picasso Designer is an extension to aid building complex charts based on the Picasso.JS library without having to write any code or understand the picasso JSON structure. The extension also provides support for selections against the chart for the expected user experience in Qlik Sense."
+          },
+          about4:{
+            type:"boolean",
+            label:"Enable Experimental Features",
+            ref:"picassoprops.enableexp",
+            defaultValue:"false"
           }
         }
       },

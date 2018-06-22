@@ -8,7 +8,7 @@ Picasso Designer is an extension to aid building complex charts based on the Pic
 1. Created the axis as a docked item
 1. Add a layer for each chart item needed, choice from (Line, Bar, Point, Pie, Grid)
 
-##Support in BETA v0.1.1 - 22/06/2018
+## Support in BETA v0.1.1 - 22/06/2018
 * Chart Templates
 * Grid Layer
 

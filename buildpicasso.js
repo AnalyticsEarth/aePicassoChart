@@ -102,7 +102,7 @@ define(['jquery',
     //Layers
     picassoprops.componentsDef.layers.forEach((layer) => {
       var retLayer = createLayer(layer);
-      if (retLayer !== null) componentsArray.push(retLayer);
+      if (retLayer !== null) componentsArray.push.apply(componentsArray, retLayer);
     });
 
     var brush = componentsArray.filter(x => x.type == 'brush-range');
@@ -146,6 +146,12 @@ define(['jquery',
         type: 'axis',
         scale: axisDef.axisscale,
         dock: axisDef.axisdock,
+        style:{
+          text:{
+            fontFamily:'"QlikView Sans", sans-serif'
+          }
+
+        },
         settings: {
           labels: {
             mode: axisDef.axislabelmode,
@@ -294,7 +300,7 @@ define(['jquery',
 
     if (lineDef.layerfield1 != '' && lineDef.layerfield2 != '') {
       //console.log(line);
-      return line;
+      return [line];
     } else {
       return null;
     }
@@ -346,7 +352,7 @@ if (!pieDef.showpresentation) {
   pie.settings.slice.opacity = pieDef.primaryopacity;
 }
 
-return pie;
+return [pie];
   }
 
   var convertFieldRefToFieldName = function(field) {
@@ -498,13 +504,55 @@ return pie;
       }
     }*/
 
+    var label = createBoxLabel(boxDef);
+
     if (boxDef.layerfield1 != '') {
-      return box;
+      return [box,label];
     } else {
       return null;
     }
 
   };
+
+  var createBoxLabel = function(boxDef){
+    var label = {
+    type: 'labels',
+    key:boxDef.layername+'_label',
+    displayOrder: 2, // must be larger than the displayOrder for the 'bars' component
+    settings: {
+      sources: [{
+        component: boxDef.layername,
+        selector: 'rect', // select all 'rect' shapes from the 'bars' component
+        strategy: {
+          type: 'bar', // the strategy type
+          settings: {
+            direction: function({ data }) { // data argument is the data bound to the shape in the referenced component
+              if(boxDef.orientation == 'vertical'){
+                return data && data.end.value > data.start.value ? 'up' : 'down'
+              }else{
+                return data && data.end.value > data.start.value ? 'left' : 'right'
+              }
+
+            },
+            fontSize: '13',
+            fontFamily: '"QlikView Sans", sans-serif',
+            labels: [{
+              label: (d) => {
+                return d.data.end.label;
+              },
+              placements: [ // label placements in prio order. Label will be placed in the first place it fits into
+                { position: 'inside', fill: '#fff', justify:0.5, align: 0.5  },
+                { position: 'outside', fill: '#666', justify:0.98, align: 0.5 }
+              ]
+            }]
+          }
+        }
+      }]
+    }
+  };
+
+  return label;
+  }
 
   var createPoint = function(pointDef) {
     var point = {
@@ -593,7 +641,7 @@ return pie;
     }
 
     if (displayCount >= 2) {
-      return point;
+      return [point];
     } else {
       return null;
     }
@@ -634,7 +682,7 @@ return pie;
       grid.minorTicks.strokeWidth = gridDef.secondarywidth;
     }
 
-    return grid;
+    return [grid];
   };
 
   var createRangeBrush = function(rangeDef) {

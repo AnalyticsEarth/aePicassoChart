@@ -8,7 +8,9 @@ define([
     function(qlik, properties, picasso, pq, bp) {
 
       picasso.use(pq)
-      picasso.renderer.prio(["canvas"])
+      picasso.renderer.prio(["canvas"]);
+      console.log(picasso.version);
+      picasso.style = {fontFamily:'"QlikView Sans", sans-serif'};
 
       return {
         initialProperties: {
@@ -50,7 +52,7 @@ define([
             $element.html('<div class="lrp" style="height:100%;position:relative;"></div>');
 
             this.chart = picasso.chart({
-              element: $element.find('.lrp')[0],
+              element: $element.find('.lrp')[0]
             });
             first = true;
 
@@ -70,7 +72,7 @@ define([
               components: componentsDef,
               interactions: interactionsDef
             };
-            //console.log(settings);
+            console.log(settings);
             //console.log(JSON.stringify(settings));
 
             /*****************************************************************************************************

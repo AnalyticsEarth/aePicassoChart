@@ -725,7 +725,7 @@ define(['./buildpicasso'], function(bp) {
                 }),
                 primarywidth: objForConditionalProp("primarywidth", "number", "slider", true, {
                   defaultValue: 1,
-                  min: 1,
+                  min: 0,
                   max: 5,
                   step: 1
                 }),
@@ -744,7 +744,7 @@ define(['./buildpicasso'], function(bp) {
                 }),
                 secondarywidth: objForConditionalProp("secondarywidth", "number", "slider", true, {
                   defaultValue: 1,
-                  min: 1,
+                  min: 0,
                   max: 5,
                   step: 1
                 }),
@@ -762,7 +762,7 @@ define(['./buildpicasso'], function(bp) {
                 }),
                 thirdwidth: objForConditionalProp("thirdwidth", "number", "slider", true, {
                   defaultValue: 1,
-                  min: 1,
+                  min: 0,
                   max: 5,
                   step: 1
                 }),
@@ -774,7 +774,7 @@ define(['./buildpicasso'], function(bp) {
                 }),
                 forthwidth: objForConditionalProp("forthwidth", "number", "slider", true, {
                   defaultValue: 1,
-                  min: 1,
+                  min: 0,
                   max: 5,
                   step: 1
                 }),
@@ -786,12 +786,10 @@ define(['./buildpicasso'], function(bp) {
                 }),
                 fifthwidth: objForConditionalProp("fifthwidth", "number", "slider", true, {
                   defaultValue: 1,
-                  min: 1,
+                  min: 0,
                   max: 5,
                   step: 1
                 }),
-
-
               }
             }
           }
@@ -949,7 +947,121 @@ define(['./buildpicasso'], function(bp) {
               step:1
             },
           }
-        }
+        },
+        labelsettings: { //This will be shown inline but can be controlled as a group with a toggle
+          type: "items",
+          show: (a) => {
+            return a.layertype == "box";
+          },
+          items: {
+            showlabels: {
+              type: "boolean",
+              ref: "label.show",
+              label: "Show Labels",
+              defaultValue: true
+            },
+            labelsize: {
+              type: "number",
+              component:"slider",
+              ref: "label.size",
+              label: "Text Size",
+              defaultValue: 13,
+              min:8,
+              max:30,
+              step:1
+            },
+            insidejustify: {
+              type: "number",
+              component:"slider",
+              ref: "label.inside.justify",
+              label: "Inside - Justify",
+              defaultValue: 0.5,
+              min:0,
+              max:1,
+              step:0.01
+            },
+            insidealign: {
+              type: "number",
+              component:"slider",
+              ref: "label.inside.align",
+              label: "Inside - Align",
+              defaultValue: 0.5,
+              min:0,
+              max:1,
+              step:0.01
+            },
+            insidecolor: {
+              type: "object",
+              component:"color-picker",
+              ref: "label.inside.color",
+              label: "Inside - Fill Color",
+              defaultValue:{
+                index:10,
+                color:'#ffffff'
+              }
+            },
+            outsidejustify: {
+              type: "number",
+              component:"slider",
+              ref: "label.outside.justify",
+              label: "Outside - Justify",
+              defaultValue: 0.5,
+              min:0,
+              max:1,
+              step:0.01
+            },
+            outsidealign: {
+              type: "number",
+              component:"slider",
+              ref: "label.outside.align",
+              label: "Outside - Align",
+              defaultValue: 0.5,
+              min:0,
+              max:1,
+              step:0.01
+            },
+            outsidecolor: {
+              type: "object",
+              component:"color-picker",
+              ref: "label.outside.color",
+              label: "Outside - Fill Color",
+              defaultValue:{
+                index:2,
+                color:'#545352'
+              }
+            },
+            oppositejustify: {
+              type: "number",
+              component:"slider",
+              ref: "label.opposite.justify",
+              label: "Opposite - Justify",
+              defaultValue: 0.5,
+              min:0,
+              max:1,
+              step:0.01
+            },
+            oppositealign: {
+              type: "number",
+              component:"slider",
+              ref: "label.opposite.align",
+              label: "Opposite - Align",
+              defaultValue: 0.5,
+              min:0,
+              max:1,
+              step:0.01
+            },
+            oppositecolor: {
+              type: "object",
+              component:"color-picker",
+              ref: "label.opposite.color",
+              label: "Opposite - Fill Color",
+              defaultValue:{
+                index:2,
+                color:'#545352'
+              }
+            },
+          }
+        },
       }
     }
     //}
@@ -1323,7 +1435,7 @@ define(['./buildpicasso'], function(bp) {
           about1a:{
             type:"string",
             component:"text",
-            label:"BETA: v0.1.1"
+            label:"BETA: v0.1.2"
           },
           about2:{
             type:"string",

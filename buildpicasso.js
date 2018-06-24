@@ -146,12 +146,6 @@ define(['jquery',
         type: 'axis',
         scale: axisDef.axisscale,
         dock: axisDef.axisdock,
-        style:{
-          text:{
-            fontFamily:'"QlikView Sans", sans-serif'
-          }
-
-        },
         settings: {
           labels: {
             mode: axisDef.axislabelmode,
@@ -496,18 +490,15 @@ return [pie];
 
     }
 
-    /*if (~["area", "rangearea"].indexOf(boxDef.linetype)) {
-      line.settings.layers.area = {};
-      if (!lineDef.showpresentation) {
-
-        line.settings.layers.area.opacity = lineDef.secondaryopacity;
-      }
-    }*/
-
     var label = createBoxLabel(boxDef);
 
     if (boxDef.layerfield1 != '') {
-      return [box,label];
+      if(label !== null){
+        return [box,label];
+      }else{
+        return [box];
+      }
+
     } else {
       return null;
     }
@@ -534,15 +525,16 @@ return [pie];
               }
 
             },
-            fontSize: '13',
+            fontSize: boxDef.label.size.toString(),
             fontFamily: '"QlikView Sans", sans-serif',
             labels: [{
               label: (d) => {
                 return d.data.end.label;
               },
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
-                { position: 'inside', fill: '#fff', justify:0.5, align: 0.5  },
-                { position: 'outside', fill: '#666', justify:0.98, align: 0.5 }
+                { position: 'inside', fill: boxDef.label.inside.color.color, justify:boxDef.label.inside.justify, align: boxDef.label.inside.align  },
+                { position: 'outside', fill: boxDef.label.outside.color.color, justify:boxDef.label.outside.justify, align: boxDef.label.outside.align },
+                { position: 'opposite', fill: boxDef.label.opposite.color.color, justify:boxDef.label.opposite.justify, align: boxDef.label.opposite.align  },
               ]
             }]
           }
@@ -551,7 +543,12 @@ return [pie];
     }
   };
 
-  return label;
+  if(boxDef.label.show){
+    return label;
+  }else{
+    return null;
+  }
+
   }
 
   var createPoint = function(pointDef) {

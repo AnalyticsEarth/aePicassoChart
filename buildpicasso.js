@@ -102,7 +102,7 @@ define(['jquery',
     //Layers
     picassoprops.componentsDef.layers.forEach((layer) => {
       var retLayer = createLayer(layer);
-      if (retLayer !== null) componentsArray.push(retLayer);
+      if (retLayer !== null) componentsArray.push.apply(componentsArray, retLayer);
     });
 
     var brush = componentsArray.filter(x => x.type == 'brush-range');
@@ -294,7 +294,7 @@ define(['jquery',
 
     if (lineDef.layerfield1 != '' && lineDef.layerfield2 != '') {
       //console.log(line);
-      return line;
+      return [line];
     } else {
       return null;
     }
@@ -346,7 +346,7 @@ if (!pieDef.showpresentation) {
   pie.settings.slice.opacity = pieDef.primaryopacity;
 }
 
-return pie;
+return [pie];
   }
 
   var convertFieldRefToFieldName = function(field) {
@@ -490,21 +490,66 @@ return pie;
 
     }
 
-    /*if (~["area", "rangearea"].indexOf(boxDef.linetype)) {
-      line.settings.layers.area = {};
-      if (!lineDef.showpresentation) {
-
-        line.settings.layers.area.opacity = lineDef.secondaryopacity;
-      }
-    }*/
+    var label = createBoxLabel(boxDef);
 
     if (boxDef.layerfield1 != '') {
-      return box;
+      if(label !== null){
+        return [box,label];
+      }else{
+        return [box];
+      }
+
     } else {
       return null;
     }
 
   };
+
+  var createBoxLabel = function(boxDef){
+    var label = {
+    type: 'labels',
+    key:boxDef.layername+'_label',
+    displayOrder: 2, // must be larger than the displayOrder for the 'bars' component
+    settings: {
+      sources: [{
+        component: boxDef.layername,
+        selector: 'rect', // select all 'rect' shapes from the 'bars' component
+        strategy: {
+          type: 'bar', // the strategy type
+          settings: {
+            direction: function({ data }) { // data argument is the data bound to the shape in the referenced component
+              if(boxDef.orientation == 'vertical'){
+                return data && data.end.value > data.start.value ? 'up' : 'down'
+              }else{
+                return data && data.end.value > data.start.value ? 'left' : 'right'
+              }
+
+            },
+            fontSize: boxDef.label.size.toString(),
+            fontFamily: '"QlikView Sans", sans-serif',
+            labels: [{
+              label: (d) => {
+                return d.data.end.label;
+              },
+              placements: [ // label placements in prio order. Label will be placed in the first place it fits into
+                { position: 'inside', fill: boxDef.label.inside.color.color, justify:boxDef.label.inside.justify, align: boxDef.label.inside.align  },
+                { position: 'outside', fill: boxDef.label.outside.color.color, justify:boxDef.label.outside.justify, align: boxDef.label.outside.align },
+                { position: 'opposite', fill: boxDef.label.opposite.color.color, justify:boxDef.label.opposite.justify, align: boxDef.label.opposite.align  },
+              ]
+            }]
+          }
+        }
+      }]
+    }
+  };
+
+  if(boxDef.label.show){
+    return label;
+  }else{
+    return null;
+  }
+
+  }
 
   var createPoint = function(pointDef) {
     var point = {
@@ -593,7 +638,7 @@ return pie;
     }
 
     if (displayCount >= 2) {
-      return point;
+      return [point];
     } else {
       return null;
     }
@@ -634,7 +679,7 @@ return pie;
       grid.minorTicks.strokeWidth = gridDef.secondarywidth;
     }
 
-    return grid;
+    return [grid];
   };
 
   var createRangeBrush = function(rangeDef) {

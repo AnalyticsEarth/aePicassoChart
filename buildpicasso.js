@@ -517,11 +517,11 @@ return [pie];
         strategy: {
           type: 'bar', // the strategy type
           settings: {
-            direction: function({ data }) { // data argument is the data bound to the shape in the referenced component
+            direction: function(d) { // data argument is the data bound to the shape in the referenced component
               if(boxDef.orientation == 'vertical'){
-                return data && data.end.value > data.start.value ? 'up' : 'down'
+                return d.data && d.data.end.value > d.data.start.value ? 'up' : 'down'
               }else{
-                return data && data.end.value > data.start.value ? 'left' : 'right'
+                return d.data && d.data.end.value > d.data.start.value ? 'left' : 'right'
               }
 
             },

@@ -951,7 +951,7 @@ define(['./buildpicasso'], function(bp) {
         labelsettings: { //This will be shown inline but can be controlled as a group with a toggle
           type: "items",
           show: (a) => {
-            return a.layertype == "box";
+            return ~["box", "pie"].indexOf(a.layertype);
           },
           items: {
             showlabels: {
@@ -970,7 +970,23 @@ define(['./buildpicasso'], function(bp) {
               max:30,
               step:1
             },
+            intocolor: { //Pie Only
+              type: "object",
+              show:(x) => {
+                return x.layertype == "pie"
+              },
+              component:"color-picker",
+              ref: "label.into.color",
+              label: "Into - Fill Color",
+              defaultValue:{
+                index:2,
+                color:'#545352'
+              }
+            },
             insidejustify: {
+              show:(x) => {
+                return x.layertype == "box"
+              },
               type: "number",
               component:"slider",
               ref: "label.inside.justify",
@@ -981,6 +997,9 @@ define(['./buildpicasso'], function(bp) {
               step:0.01
             },
             insidealign: {
+              show:(x) => {
+                return x.layertype == "box"
+              },
               type: "number",
               component:"slider",
               ref: "label.inside.align",
@@ -1001,6 +1020,9 @@ define(['./buildpicasso'], function(bp) {
               }
             },
             outsidejustify: {
+              show:(x) => {
+                return x.layertype == "box"
+              },
               type: "number",
               component:"slider",
               ref: "label.outside.justify",
@@ -1011,6 +1033,9 @@ define(['./buildpicasso'], function(bp) {
               step:0.01
             },
             outsidealign: {
+              show:(x) => {
+                return x.layertype == "box"
+              },
               type: "number",
               component:"slider",
               ref: "label.outside.align",
@@ -1031,6 +1056,9 @@ define(['./buildpicasso'], function(bp) {
               }
             },
             oppositejustify: {
+              show:(x) => {
+                return x.layertype == "box"
+              },
               type: "number",
               component:"slider",
               ref: "label.opposite.justify",
@@ -1041,6 +1069,9 @@ define(['./buildpicasso'], function(bp) {
               step:0.01
             },
             oppositealign: {
+              show:(x) => {
+                return x.layertype == "box"
+              },
               type: "number",
               component:"slider",
               ref: "label.opposite.align",
@@ -1051,6 +1082,9 @@ define(['./buildpicasso'], function(bp) {
               step:0.01
             },
             oppositecolor: {
+              show:(x) => {
+                return x.layertype == "box"
+              },
               type: "object",
               component:"color-picker",
               ref: "label.opposite.color",

@@ -346,8 +346,20 @@ if (!pieDef.showpresentation) {
   pie.settings.slice.opacity = pieDef.primaryopacity;
 }
 
-return [pie];
+var label = createPieLabel(pieDef);
+
+if (pieDef.layerfield1 != '') {
+  if(label !== null){
+    return [pie,label];
+  }else{
+    return [pie];
   }
+
+} else {
+  return null;
+}
+
+}
 
   var convertFieldRefToFieldName = function(field) {
     if (typeof field == 'undefined') {
@@ -544,6 +556,54 @@ return [pie];
   };
 
   if(boxDef.label.show){
+    return label;
+  }else{
+    return null;
+  }
+
+  }
+
+  var createPieLabel = function(pieDef){
+    var label = {
+    type: 'labels',
+    key:pieDef.layername+'_label',
+    displayOrder: 2,
+    settings: {
+      sources: [{
+        component: pieDef.layername,
+        selector: 'path',
+        strategy: {
+          type: 'slice', // the strategy type
+          settings: {
+            direction: 'horizontal',
+            fontSize: pieDef.label.size.toString(),
+            fontFamily: '"QlikView Sans", sans-serif',
+            labels: [{
+              label: (d) => {
+                return d.data.label;
+              },
+              placements: [ // label placements in prio order. Label will be placed in the first place it fits into
+              /*  { position: 'into', fill: pieDef.label.into.color.color},
+                { position: 'inside', fill: pieDef.label.inside.color.color},*/
+                { position: 'outside', fill: pieDef.label.outside.color.color},
+              ]
+            },{
+              label: (d) => {
+                return d.data.arc.label;
+              },
+              placements: [ // label placements in prio order. Label will be placed in the first place it fits into
+                { position: 'into', fill: pieDef.label.into.color.color},
+              /*  { position: 'inside', fill: pieDef.label.inside.color.color},
+                { position: 'outside', fill: pieDef.label.outside.color.color},*/
+              ]
+            }]
+          }
+        }
+      }]
+    }
+  };
+
+  if(pieDef.label.show){
     return label;
   }else{
     return null;
@@ -809,14 +869,12 @@ return [pie];
       list.push({
         value: 'qDimensionInfo/' + i,
         label: 'Dim ' + i + ': ' + d.qFallbackTitle
-
       });
     });
     hypercube.qMeasureInfo.forEach((m, i) => {
       list.push({
         value: 'qMeasureInfo/' + i,
         label: 'Mes ' + i + ': ' + m.qFallbackTitle
-
       });
     });
     return list;

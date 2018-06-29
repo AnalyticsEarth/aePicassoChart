@@ -1240,6 +1240,47 @@ define(['./buildpicasso'], function(bp) {
                   return bp.optionsListForFieldsDef(y.properties.qHyperCubeDef, 0);
                 }
               },
+              scalefieldgroup:{
+                type:"items",
+                grouped:true,
+                items:{
+                  scalefieldtitle:{
+                    type:"string",
+                    component:"text",
+                    label:"Fields"
+                  },
+              scalefieldlist: (x,y) => {
+                  //var fields = bp.optionsListForFieldsDef(y.properties.qHyperCubeDef, 0);
+                  //console.log(fields);
+                  return {
+                    type:"items",
+                    ref:"fieldlist",
+                    items:{
+                    field1:{
+                      type:"boolean",
+                      ref:"fields.field1",
+                      label:"field1"
+                    },
+                    field2:{
+                      type:"boolean",
+                      ref:"fields.field2",
+                      label:"field2"
+                    }
+                  }
+                };
+                /*{
+                  field1:{
+                    type:"boolean",
+                    ref:"fields.field1",
+                    label:"field1"
+                  },
+                  field2:{
+                    type:"boolean",
+                    ref:"fields.field2",
+                    label:"field2"
+                  }
+                }*/
+              }}},
               scaleinvert: {
                 type: "boolean",
                 ref: "scaleinvert",

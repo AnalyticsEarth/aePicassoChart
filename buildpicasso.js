@@ -346,7 +346,7 @@ if (!pieDef.showpresentation) {
   pie.settings.slice.opacity = pieDef.primaryopacity;
 }
 
-var label = createPieLabel(pieDef);
+var label = null; //createPieLabel(pieDef);
 
 if (pieDef.layerfield1 != '') {
   if(label !== null){
@@ -502,7 +502,7 @@ if (pieDef.layerfield1 != '') {
 
     }
 
-    var label = createBoxLabel(boxDef);
+    var label = createBoxLabel(boxDef, 'rect');
 
     if (boxDef.layerfield1 != '') {
       if(label !== null){
@@ -517,7 +517,15 @@ if (pieDef.layerfield1 != '') {
 
   };
 
-  var createBoxLabel = function(boxDef){
+  var checkForNull = function(val, def){
+    if(typeof val == 'undefined'){
+      return def;
+    }else{
+      return val;
+    }
+  }
+
+  var createBoxLabel = function(boxDef, selector){
     var label = {
     type: 'labels',
     key:boxDef.layername+'_label',
@@ -525,7 +533,7 @@ if (pieDef.layerfield1 != '') {
     settings: {
       sources: [{
         component: boxDef.layername,
-        selector: 'rect', // select all 'rect' shapes from the 'bars' component
+        selector: selector, // select all 'rect' shapes from the 'bars' component
         strategy: {
           type: 'bar', // the strategy type
           settings: {
@@ -537,16 +545,16 @@ if (pieDef.layerfield1 != '') {
               }
 
             },
-            fontSize: boxDef.label.size.toString(),
+            fontSize: checkForNull(boxDef.label.size,13).toString(),
             fontFamily: '"QlikView Sans", sans-serif',
             labels: [{
               label: (d) => {
                 return d.data.end.label;
               },
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
-                { position: 'inside', fill: boxDef.label.inside.color.color, justify:boxDef.label.inside.justify, align: boxDef.label.inside.align  },
-                { position: 'outside', fill: boxDef.label.outside.color.color, justify:boxDef.label.outside.justify, align: boxDef.label.outside.align },
-                { position: 'opposite', fill: boxDef.label.opposite.color.color, justify:boxDef.label.opposite.justify, align: boxDef.label.opposite.align  },
+                { position: 'inside', fill: checkForNull(boxDef.label.inside.color,{index:10,color:'#ffffff'}).color , justify:checkForNull(boxDef.label.inside.justify,0.5), align: checkForNull(boxDef.label.inside.align,0.5)  },
+                { position: 'outside', fill: checkForNull(boxDef.label.outside.color,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.label.outside.justify,0.5), align: checkForNull(boxDef.label.outside.align,0.5) },
+                { position: 'opposite', fill: checkForNull(boxDef.label.opposite.color,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.label.opposite.justify,0.5), align: checkForNull(boxDef.label.opposite.align,0.5)  },
               ]
             }]
           }
@@ -567,7 +575,7 @@ if (pieDef.layerfield1 != '') {
     var label = {
     type: 'labels',
     key:pieDef.layername+'_label',
-    displayOrder: 2,
+    displayOrder: 10,
     settings: {
       sources: [{
         component: pieDef.layername,
@@ -575,24 +583,25 @@ if (pieDef.layerfield1 != '') {
         strategy: {
           type: 'slice', // the strategy type
           settings: {
-            direction: 'horizontal',
-            fontSize: pieDef.label.size.toString(),
+            direction: 'rotate',
+            fontSize: checkForNull(pieDef.label.size,13).toString(),
             fontFamily: '"QlikView Sans", sans-serif',
             labels: [{
               label: (d) => {
+                console.log(d);
                 return d.data.label;
               },
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
               /*  { position: 'into', fill: pieDef.label.into.color.color},
                 { position: 'inside', fill: pieDef.label.inside.color.color},*/
-                { position: 'outside', fill: pieDef.label.outside.color.color},
+                { position: 'outside', fill: checkForNull(pieDef.label.outside.color,{index:2,color:'#545352'}).color},
               ]
             },{
               label: (d) => {
                 return d.data.arc.label;
               },
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
-                { position: 'into', fill: pieDef.label.into.color.color},
+                { position: 'outside', fill: checkForNull(pieDef.label.inside.color,{index:10,color:'#ffffff'}).color},
               /*  { position: 'inside', fill: pieDef.label.inside.color.color},
                 { position: 'outside', fill: pieDef.label.outside.color.color},*/
               ]
@@ -697,8 +706,15 @@ if (pieDef.layerfield1 != '') {
 
     }
 
+    var label = null; //createBoxLabel(pointDef, 'circle');
+
     if (displayCount >= 2) {
-      return [point];
+      if(label !== null){
+        return [point,label];
+      }else{
+        return [point];
+      }
+
     } else {
       return null;
     }

@@ -951,7 +951,7 @@ define(['./buildpicasso'], function(bp) {
         labelsettings: { //This will be shown inline but can be controlled as a group with a toggle
           type: "items",
           show: (a) => {
-            return ~["box", "pie"].indexOf(a.layertype);
+            return ~["box"].indexOf(a.layertype);
           },
           items: {
             showlabels: {
@@ -985,7 +985,7 @@ define(['./buildpicasso'], function(bp) {
             },
             insidejustify: {
               show:(x) => {
-                return x.layertype == "box"
+                return ~["box", "point"].indexOf(x.layertype)
               },
               type: "number",
               component:"slider",
@@ -998,7 +998,7 @@ define(['./buildpicasso'], function(bp) {
             },
             insidealign: {
               show:(x) => {
-                return x.layertype == "box"
+                return ~["box", "point"].indexOf(x.layertype)
               },
               type: "number",
               component:"slider",
@@ -1021,7 +1021,7 @@ define(['./buildpicasso'], function(bp) {
             },
             outsidejustify: {
               show:(x) => {
-                return x.layertype == "box"
+                return ~["box", "point"].indexOf(x.layertype)
               },
               type: "number",
               component:"slider",
@@ -1034,7 +1034,7 @@ define(['./buildpicasso'], function(bp) {
             },
             outsidealign: {
               show:(x) => {
-                return x.layertype == "box"
+                return ~["box", "point"].indexOf(x.layertype)
               },
               type: "number",
               component:"slider",
@@ -1057,7 +1057,7 @@ define(['./buildpicasso'], function(bp) {
             },
             oppositejustify: {
               show:(x) => {
-                return x.layertype == "box"
+                return ~["box", "point"].indexOf(x.layertype)
               },
               type: "number",
               component:"slider",
@@ -1070,7 +1070,7 @@ define(['./buildpicasso'], function(bp) {
             },
             oppositealign: {
               show:(x) => {
-                return x.layertype == "box"
+                return ~["box", "point"].indexOf(x.layertype)
               },
               type: "number",
               component:"slider",
@@ -1083,7 +1083,7 @@ define(['./buildpicasso'], function(bp) {
             },
             oppositecolor: {
               show:(x) => {
-                return x.layertype == "box"
+                return ~["box", "point"].indexOf(x.layertype)
               },
               type: "object",
               component:"color-picker",

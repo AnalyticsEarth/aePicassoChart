@@ -1,7 +1,7 @@
 {
   "info": {
     "version": "0.1",
-    "exportDate": "2018-06-29T16:15:14.888Z"
+    "exportDate": "2018-06-29T16:28:06.720Z"
   },
   "chartspec": {
     "scales": [{
@@ -52,7 +52,7 @@
         "layerscale1": "majorscale",
         "layerfield1": "d0",
         "layerscale2": "minorscale",
-        "layerfield2": "m0",
+        "layerfield2": "",
         "layerscale3": "",
         "layerfield3": "m0",
         "layerscale4": "",
@@ -100,41 +100,31 @@
         "pieouterradius": 1,
         "pieinnerradius": 0,
         "piecornerradius": 0,
-        "label": {
-          "show": true,
-          "size": 13,
-          "into": {
-            "color": {
-              "index": 2,
-              "color": "#545352"
-            }
-          },
-          "inside": {
-            "justify": 0.5,
-            "align": 0.5,
-            "color": {
-              "index": 10,
-              "color": "#ffffff"
-            }
-          },
-          "outside": {
-            "justify": 0.5,
-            "align": 0.5,
-            "color": {
-              "index": 2,
-              "color": "#545352"
-            }
-          },
-          "opposite": {
-            "justify": 0.5,
-            "align": 0.5,
-            "color": {
-              "index": 2,
-              "color": "#545352"
-            }
-          }
+        "labelshow": false,
+        "labelsize": 13,
+        "labelintocolor": {
+          "index": 2,
+          "color": "#545352"
         },
-        "cId": "mnAmyZD"
+        "labelinsidejustify": 0.5,
+        "labelinsidealign": 0.5,
+        "labelinsidecolor": {
+          "index": 10,
+          "color": "#ffffff"
+        },
+        "labeloutsidejustify": 0.5,
+        "labeloutsidealign": 0.5,
+        "labeloutsidecolor": {
+          "index": 2,
+          "color": "#545352"
+        },
+        "labeloppositejustify": 0.5,
+        "labeloppositealign": 0.5,
+        "labeloppositecolor": {
+          "index": 2,
+          "color": "#545352"
+        },
+        "cId": "uwpSC"
       }]
     }
   }

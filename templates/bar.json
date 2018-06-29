@@ -1,7 +1,7 @@
 {
   "info": {
     "version": "0.1",
-    "exportDate": "2018-06-19T16:06:12.148Z"
+    "exportDate": "2018-06-29T16:15:14.888Z"
   },
   "chartspec": {
     "scales": [{
@@ -52,7 +52,7 @@
         "layerscale1": "majorscale",
         "layerfield1": "d0",
         "layerscale2": "minorscale",
-        "layerfield2": "",
+        "layerfield2": "m0",
         "layerscale3": "",
         "layerfield3": "m0",
         "layerscale4": "",
@@ -92,7 +92,49 @@
         "showpointtype": true,
         "pointshape": "circle",
         "pointsize": 1,
-        "cId": "bnRKrhE"
+        "showgridx": true,
+        "showgridy": true,
+        "showgridtickmajor": true,
+        "showgridtickminor": true,
+        "piepadangle": 0,
+        "pieouterradius": 1,
+        "pieinnerradius": 0,
+        "piecornerradius": 0,
+        "label": {
+          "show": true,
+          "size": 13,
+          "into": {
+            "color": {
+              "index": 2,
+              "color": "#545352"
+            }
+          },
+          "inside": {
+            "justify": 0.5,
+            "align": 0.5,
+            "color": {
+              "index": 10,
+              "color": "#ffffff"
+            }
+          },
+          "outside": {
+            "justify": 0.5,
+            "align": 0.5,
+            "color": {
+              "index": 2,
+              "color": "#545352"
+            }
+          },
+          "opposite": {
+            "justify": 0.5,
+            "align": 0.5,
+            "color": {
+              "index": 2,
+              "color": "#545352"
+            }
+          }
+        },
+        "cId": "mnAmyZD"
       }]
     }
   }

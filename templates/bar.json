@@ -1,7 +1,7 @@
 {
   "info": {
     "version": "0.1",
-    "exportDate": "2018-06-19T16:06:12.148Z"
+    "exportDate": "2018-06-29T16:28:06.720Z"
   },
   "chartspec": {
     "scales": [{
@@ -92,7 +92,39 @@
         "showpointtype": true,
         "pointshape": "circle",
         "pointsize": 1,
-        "cId": "bnRKrhE"
+        "showgridx": true,
+        "showgridy": true,
+        "showgridtickmajor": true,
+        "showgridtickminor": true,
+        "piepadangle": 0,
+        "pieouterradius": 1,
+        "pieinnerradius": 0,
+        "piecornerradius": 0,
+        "labelshow": false,
+        "labelsize": 13,
+        "labelintocolor": {
+          "index": 2,
+          "color": "#545352"
+        },
+        "labelinsidejustify": 0.5,
+        "labelinsidealign": 0.5,
+        "labelinsidecolor": {
+          "index": 10,
+          "color": "#ffffff"
+        },
+        "labeloutsidejustify": 0.5,
+        "labeloutsidealign": 0.5,
+        "labeloutsidecolor": {
+          "index": 2,
+          "color": "#545352"
+        },
+        "labeloppositejustify": 0.5,
+        "labeloppositealign": 0.5,
+        "labeloppositecolor": {
+          "index": 2,
+          "color": "#545352"
+        },
+        "cId": "uwpSC"
       }]
     }
   }

@@ -956,14 +956,14 @@ define(['./buildpicasso'], function(bp) {
           items: {
             showlabels: {
               type: "boolean",
-              ref: "label.show",
+              ref: "labelshow",
               label: "Show Labels",
-              defaultValue: true
+              defaultValue: false
             },
             labelsize: {
               type: "number",
               component:"slider",
-              ref: "label.size",
+              ref: "labelsize",
               label: "Text Size",
               defaultValue: 13,
               min:8,
@@ -976,7 +976,7 @@ define(['./buildpicasso'], function(bp) {
                 return x.layertype == "pie"
               },
               component:"color-picker",
-              ref: "label.into.color",
+              ref: "labelintocolor",
               label: "Into - Fill Color",
               defaultValue:{
                 index:2,
@@ -989,7 +989,7 @@ define(['./buildpicasso'], function(bp) {
               },
               type: "number",
               component:"slider",
-              ref: "label.inside.justify",
+              ref: "labelinsidejustify",
               label: "Inside - Justify",
               defaultValue: 0.5,
               min:0,
@@ -1002,7 +1002,7 @@ define(['./buildpicasso'], function(bp) {
               },
               type: "number",
               component:"slider",
-              ref: "label.inside.align",
+              ref: "labelinsidealign",
               label: "Inside - Align",
               defaultValue: 0.5,
               min:0,
@@ -1012,7 +1012,7 @@ define(['./buildpicasso'], function(bp) {
             insidecolor: {
               type: "object",
               component:"color-picker",
-              ref: "label.inside.color",
+              ref: "labelinsidecolor",
               label: "Inside - Fill Color",
               defaultValue:{
                 index:10,
@@ -1025,7 +1025,7 @@ define(['./buildpicasso'], function(bp) {
               },
               type: "number",
               component:"slider",
-              ref: "label.outside.justify",
+              ref: "labeloutsidejustify",
               label: "Outside - Justify",
               defaultValue: 0.5,
               min:0,
@@ -1038,7 +1038,7 @@ define(['./buildpicasso'], function(bp) {
               },
               type: "number",
               component:"slider",
-              ref: "label.outside.align",
+              ref: "labeloutsidealign",
               label: "Outside - Align",
               defaultValue: 0.5,
               min:0,
@@ -1048,7 +1048,7 @@ define(['./buildpicasso'], function(bp) {
             outsidecolor: {
               type: "object",
               component:"color-picker",
-              ref: "label.outside.color",
+              ref: "labeloutsidecolor",
               label: "Outside - Fill Color",
               defaultValue:{
                 index:2,
@@ -1061,7 +1061,7 @@ define(['./buildpicasso'], function(bp) {
               },
               type: "number",
               component:"slider",
-              ref: "label.opposite.justify",
+              ref: "labeloppositejustify",
               label: "Opposite - Justify",
               defaultValue: 0.5,
               min:0,
@@ -1074,7 +1074,7 @@ define(['./buildpicasso'], function(bp) {
               },
               type: "number",
               component:"slider",
-              ref: "label.opposite.align",
+              ref: "labeloppositealign",
               label: "Opposite - Align",
               defaultValue: 0.5,
               min:0,
@@ -1087,7 +1087,7 @@ define(['./buildpicasso'], function(bp) {
               },
               type: "object",
               component:"color-picker",
-              ref: "label.opposite.color",
+              ref: "labeloppositecolor",
               label: "Opposite - Fill Color",
               defaultValue:{
                 index:2,
@@ -1493,7 +1493,7 @@ define(['./buildpicasso'], function(bp) {
           about1a:{
             type:"string",
             component:"text",
-            label:"BETA: v0.1.2"
+            label:"BETA: v0.1.3"
           },
           about2:{
             type:"string",

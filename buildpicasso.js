@@ -519,6 +519,7 @@ if (pieDef.layerfield1 != '') {
   };
 
   var checkForNull = function(val, def){
+    console.log(val);
     if(typeof val == 'undefined'){
       return def;
     }else{
@@ -527,6 +528,7 @@ if (pieDef.layerfield1 != '') {
   }
 
   var createBoxLabel = function(boxDef, selector){
+    console.log(boxDef);
     var label = {
     type: 'labels',
     key:boxDef.layername+'_label',
@@ -544,18 +546,17 @@ if (pieDef.layerfield1 != '') {
               }else{
                 return d.data && d.data.end.value > d.data.start.value ? 'left' : 'right'
               }
-
             },
-            fontSize: checkForNull(boxDef.label.size,13).toString(),
+            fontSize: checkForNull(boxDef.labelsize,13).toString(),
             fontFamily: '"QlikView Sans", sans-serif',
             labels: [{
               label: (d) => {
                 return d.data.end.label;
               },
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
-                { position: 'inside', fill: checkForNull(boxDef.label.inside.color,{index:10,color:'#ffffff'}).color , justify:checkForNull(boxDef.label.inside.justify,0.5), align: checkForNull(boxDef.label.inside.align,0.5)  },
-                { position: 'outside', fill: checkForNull(boxDef.label.outside.color,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.label.outside.justify,0.5), align: checkForNull(boxDef.label.outside.align,0.5) },
-                { position: 'opposite', fill: checkForNull(boxDef.label.opposite.color,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.label.opposite.justify,0.5), align: checkForNull(boxDef.label.opposite.align,0.5)  },
+                { position: 'inside', fill: checkForNull(boxDef.labelinsidecolor,{index:10,color:'#ffffff'}).color , justify:checkForNull(boxDef.labelinsidejustify,0.5), align: checkForNull(boxDef.labelinsidealign,0.5)  },
+                { position: 'outside', fill: checkForNull(boxDef.labeloutsidecolor,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.labeloutsidejustify,0.5), align: checkForNull(boxDef.labeloutsidealign,0.5) },
+                { position: 'opposite', fill: checkForNull(boxDef.labeloppositecolor,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.labeloppositejustify,0.5), align: checkForNull(boxDef.labeloppositealign,0.5)  },
               ]
             }]
           }
@@ -564,7 +565,7 @@ if (pieDef.layerfield1 != '') {
     }
   };
 
-  if(boxDef.label.show){
+  if(boxDef.labelshow){
     return label;
   }else{
     return null;

@@ -12,6 +12,7 @@ Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 
 ## Support in BETA v0.1.2 - 24/06/2018
 * Labels on Box/Bar Layer
+* v0.1.3 - 30/06/2018 - Fix for bar template with labels.
 
 ## Support in BETA v0.1.1 - 22/06/2018
 * Chart Templates

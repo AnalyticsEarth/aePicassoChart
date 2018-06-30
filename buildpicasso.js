@@ -125,9 +125,10 @@ define(['jquery',
   //Axis Component - Note this creates two picasso components
   var createAxis = function(axisDef, hypercube, scalesDef) {
     var scaleIndex = scalesDef.map(e => e.scalename).indexOf(axisDef.axisscale);
-    //console.log(scaleIndex);
+    console.log(scaleIndex);
     if(scaleIndex != -1){
       var axisFieldDef = scalesDef[scaleIndex].scalefield;
+      if(axisFieldDef == "") return null;
       var dimMes = axisFieldDef.split("/");
 
       var axisTitle = {
@@ -898,7 +899,7 @@ if (pieDef.layerfield1 != '') {
 
   var optionsListForFieldsDef = function(hypercubedef, valueType) {
     var list = [];
-    if (valueType == 1) {
+    if (valueType <= 1) {
       list.push({
         value: "",
         label: "None"

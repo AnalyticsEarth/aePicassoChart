@@ -44,7 +44,7 @@ define([
 
 
           layout.picassoprops.fieldOptions = bp.optionsListForFields(layout.qHyperCube);
-          //console.log(layout);
+          console.log(layout);
 
           var first = false;
           if (typeof this.chart == 'undefined') {

@@ -520,6 +520,13 @@ define(['./buildpicasso'], function(bp) {
               label: "Show Layer",
               defaultValue: true
             },
+            legshow: {
+              type: "boolean",
+              ref: "legshow",
+              label: "Show In Legend",
+              show:(y) => { return !~["pie","grid"].indexOf(y.layertype); }, //Not for pie and grid
+              defaultValue: true
+            },
             linetype: {
               type: "string",
               component: "dropdown",
@@ -1249,7 +1256,7 @@ define(['./buildpicasso'], function(bp) {
                   return ((x.scalefield != "") && (typeof x.scalefield != "undefined"));
                 },
                 options: (x, y) => {
-                  return bp.optionsListForFieldsDef(y.properties.qHyperCubeDef, 0);
+                  return bp.optionsListForFieldsDef(y.properties.qHyperCubeDef, 0); //TODO: Hide the fields already selected
                 }
               },
               scalefield3: {
@@ -1290,6 +1297,10 @@ define(['./buildpicasso'], function(bp) {
                   {
                     value: "color",
                     label: "Color"
+                  },
+                  {
+                    value: "categorical-color",
+                    label: "Categorical Color"
                   }
                 ],
                 defaultValue: ""
@@ -1353,35 +1364,48 @@ define(['./buildpicasso'], function(bp) {
                   tooltip: "Select for Legend"
                 }],
               },
-              axisscale: objForProp("axisscale", "string", "dropdown", false, {
-                label: "Scale",
-                options: (x, y) => {
-                  return bp.optionsListForScales(y.properties.picassoprops.scalesDef, 0);
+              dockgroup: {
+                type: "items",
+                show: (a) => {
+                  return (a.dockeditemtype == 'legend');
+                },
+                items: {
+                  legtype: {
+                    type: "string",
+                    component: "buttongroup",
+                    label: "Legend Type",
+                    ref: "legendtype",
+                    defaultValue: "legend-cat",
+                    options: [{
+                      value: "legend-layer",
+                      label: "Layers",
+                      tooltip: "Categorical Legend for All Layers"
+                    },{
+                      value: "legend-cat",
+                      label: "Cat",
+                      tooltip: "Categorical Legend"
+                    }, {
+                      value: "legend-seq",
+                      label: "Seq",
+                      tooltip: "Sequential Legend"
+                    }],
+                  },
+                  axisscale: objForProp("colorscale", "string", "dropdown", false, {
+                    label: "Color Scale",
+                    show: (x) => {
+                      return x.legendtype != 'legend-layer';
+                    },
+                    options: (x, y) => {
+                      return bp.optionsListForScales(y.properties.picassoprops.scalesDef, 0);
+                    }
+                  }),
+                  legtitle: objForProp("legtitle", "string", null, false, {
+                    label: "Legend Title",
+                    show: (x) => {
+                      return x.dockeditemtype == 'legend';
+                    },
+                  }),
                 }
-              }),
-              axisdock: {
-                type: "string",
-                component: "dropdown",
-                ref: "axisdock",
-                label: "Dock",
-                options: [{
-                    value: "left",
-                    label: "Left"
-                  },
-                  {
-                    value: "right",
-                    label: "Right"
-                  },
-                  {
-                    value: "top",
-                    label: "Top"
-                  },
-                  {
-                    value: "bottom",
-                    label: "Bottom"
-                  }
-                ],
-                defaultValue: "left"
               },
               axisgroup: {
                 type: "items",
@@ -1389,6 +1413,12 @@ define(['./buildpicasso'], function(bp) {
                   return (a.dockeditemtype == 'axis');
                 },
                 items: {
+                  axisscale: objForProp("axisscale", "string", "dropdown", false, {
+                    label: "Scale",
+                    options: (x, y) => {
+                      return bp.optionsListForScales(y.properties.picassoprops.scalesDef, 0);
+                    }
+                  }),
                   axislabelmode: {
                     type: "string",
                     component: "dropdown",
@@ -1426,39 +1456,32 @@ define(['./buildpicasso'], function(bp) {
                       return (a.axislabelmode == 'tilted');
                     }
                   },
-
                 }
               },
-              dockgroup: {
-                type: "items",
-                show: (a) => {
-                  return (a.dockeditemtype == 'legend');
-                },
-                items: {
-                  legtype: {
-                    type: "string",
-                    component: "buttongroup",
-                    label: "Legend Type",
-                    ref: "legendtype",
-                    defaultValue: "legend-cat",
-                    options: [{
-                      value: "legend-cat",
-                      label: "Categorical",
-                      tooltip: "Categorical Legend"
-                    }, {
-                      value: "legend-seq",
-                      label: "Sequential",
-                      tooltip: "Sequential Legend"
-                    }],
+              axisdock: {
+                type: "string",
+                component: "dropdown",
+                ref: "axisdock",
+                label: "Dock",
+                options: [{
+                    value: "left",
+                    label: "Left"
                   },
-                  axisscale: objForProp("colorscale", "string", "dropdown", false, {
-                    label: "Color Scale",
-                    options: (x, y) => {
-                      return bp.optionsListForScales(y.properties.picassoprops.scalesDef, 0);
-                    }
-                  }),
-                }
-              }
+                  {
+                    value: "right",
+                    label: "Right"
+                  },
+                  {
+                    value: "top",
+                    label: "Top"
+                  },
+                  {
+                    value: "bottom",
+                    label: "Bottom"
+                  }
+                ],
+                defaultValue: "left"
+              },
             }
           },
         }
@@ -1493,7 +1516,7 @@ define(['./buildpicasso'], function(bp) {
           about1a:{
             type:"string",
             component:"text",
-            label:"BETA: v0.1.3"
+            label:"BETA: v0.2.0"
           },
           about2:{
             type:"string",

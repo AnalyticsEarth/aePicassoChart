@@ -10,15 +10,15 @@ Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 1. Created the axis as a docked item
 1. Add a layer for each chart item needed, choice from (Line, Bar, Point, Pie, Grid)
 
-## Support in BETA v0.1.2 - 24/06/2018
-* Labels on Box/Bar Layer
-* v0.1.3 - 30/06/2018 - Fix for bar template with labels.
+## Support in BETA v0.2 - 02/07/2018
+* Layer legend
+* Multiple fields on scales (max 3)
 
-## Support in BETA v0.1.1 - 22/06/2018
+## Support in BETA v0.1
+* Labels on Box/Bar Layer
+* Fix for bar template with labels.
 * Chart Templates
 * Grid Layer
-
-## Support in BETA v0.1.0 - 21/06/2018
 * Single Dimension Line, Bar, Point and Pie charts
 * 2 Dimension Point Layer
 * Dimension selection and range selection on dimension axis

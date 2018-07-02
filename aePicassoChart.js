@@ -72,7 +72,7 @@ define([
               components: componentsDef,
               interactions: interactionsDef
             };
-            console.log(settings);
+            //console.log(settings);
             //console.log(JSON.stringify(settings));
 
             /*****************************************************************************************************

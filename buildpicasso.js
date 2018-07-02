@@ -54,36 +54,65 @@ define(['jquery',
 
   };
 
+  var scaleFieldArray = function(scale, array, level, max){
+    var field = 'scalefield';
+    if(level > 1) field = field + level;
+    if(scale[field] != "" && (typeof scale[field] != 'undefined')){
+      array.push(scale[field]);
+      if(level < max){
+        return scaleFieldArray(scale, array,level+1,max);
+      }
+    }
+    return array;
+  };
+
 
   //Create Scales
   var createScales = function(scalesDef) {
     var scalesObj = {};
+
     scalesDef.forEach((scale) => {
+
+      var fields = [];
+      scaleFieldArray(scale,fields,1,3);
+
       if (scale.scalefield.split("/")[0] == "qDimensionInfo") {
+
+        var extract = {};
+        if(fields.length == 1){
+          extract.field = fields[0];
+        }else{
+          extract.fields = fields;
+        }
+
         scalesObj[scale.scalename] = {
           data: {
-            extract: {
-              field: scale.scalefield
-            }
+            extract
           },
           invert: scale.scaleinvert,
           padding: scale.scalepadding
         };
+
+
       } else {
+
+        var data = {};
+        if(fields.length == 1){
+          data.field = fields[0];
+        }else{
+          data.fields = fields;
+        }
+
         scalesObj[scale.scalename] = {
-          data: {
-            field: scale.scalefield
-          },
+          data,
           invert: scale.scaleinvert,
-          expand: scale.scaleexpand
+          expand: scale.scaleexpand,
         };
 
         if (typeof scale.scaleinclude != 'undefined' && scale.scaleinclude != '') {
           scalesObj[scale.scalename].include = scale.scaleinclude.split(",");
         }
-
       }
-
       if (scale.scaletype != "") {
         scalesObj[scale.scalename].type = scale.scaletype;
       }
@@ -96,13 +125,17 @@ define(['jquery',
     var componentsArray = [];
     //Axis
     picassoprops.componentsDef.axis.forEach((axis) => {
-      componentsArray.push.apply(componentsArray, createDockedItem(axis, hypercube, picassoprops.scalesDef));
+      componentsArray.push.apply(componentsArray, createDockedItem(axis, hypercube, picassoprops));
     });
 
     //Layers
-    picassoprops.componentsDef.layers.forEach((layer) => {
+    var layersLen = picassoprops.componentsDef.layers.length;
+    picassoprops.componentsDef.layers.forEach((layer, i) => {
       var retLayer = createLayer(layer);
-      if (retLayer !== null) componentsArray.push.apply(componentsArray, retLayer);
+      if (retLayer !== null){
+        retLayer[0].displayOrder = i;
+        componentsArray.push.apply(componentsArray, retLayer);
+      }
     });
 
     var brush = componentsArray.filter(x => x.type == 'brush-range');
@@ -113,26 +146,27 @@ define(['jquery',
     return notbrush.concat(brush);
   };
 
-  var createDockedItem = function(dockDef, hypercube, scalesDef) {
+  var createDockedItem = function(dockDef, hypercube, picassoprops) {
     if (dockDef.dockeditemtype == "axis") {
-      return createAxis(dockDef, hypercube, scalesDef);
+      return createAxis(dockDef, hypercube, picassoprops.scalesDef);
     }
     if (dockDef.dockeditemtype == "legend") {
-      return createLegend(dockDef);
+      return createLegend(dockDef, hypercube, picassoprops);
     }
   }
 
   //Axis Component - Note this creates two picasso components
   var createAxis = function(axisDef, hypercube, scalesDef) {
     var scaleIndex = scalesDef.map(e => e.scalename).indexOf(axisDef.axisscale);
-    //console.log(scaleIndex);
     if(scaleIndex != -1){
       var axisFieldDef = scalesDef[scaleIndex].scalefield;
+      if(axisFieldDef == "") return null;
       var dimMes = axisFieldDef.split("/");
 
       var axisTitle = {
         type: 'text',
         text: hypercube[dimMes[0]][dimMes[1]].qFallbackTitle,
+        displayOrder:1,
         style: {
           text: {
             fontSize: '13px',
@@ -146,6 +180,7 @@ define(['jquery',
         type: 'axis',
         scale: axisDef.axisscale,
         dock: axisDef.axisdock,
+        displayOrder:0,
         settings: {
           labels: {
             mode: axisDef.axislabelmode,
@@ -170,12 +205,15 @@ define(['jquery',
 
   };
 
-  var createLegend = function(legDef) {
+  var createLegend = function(legDef, hypercube, picassoprops) {
     if (legDef.legendtype == "legend-seq") {
       return createSeqLegend(legDef);
     }
     if (legDef.legendtype == "legend-cat") {
-      return createCatLegend(legDef);
+      return createCatLegend(legDef, hypercube, picassoprops);
+    }
+    if (legDef.legendtype == "legend-layer") {
+      return createLayerLegend(legDef, hypercube, picassoprops);
     }
   };
 
@@ -192,10 +230,10 @@ define(['jquery',
     return [leg]; //in array to mirror the axis function
   };
 
-  var createCatLegend = function(legDef) {
+  var createCatLegend = function(legDef, hypercube, picassoprops) {
     var leg = {
       type: legDef.legendtype,
-      scale: legDef.axisscale,
+      scale: legDef.colorscale,
       dock: legDef.axisdock,
       brush: {
         trigger: [{
@@ -214,6 +252,54 @@ define(['jquery',
     };
 
     return [leg]; //in array to mirror the axis function
+  };
+
+  var createLayerLegend = function(legDef, hypercube, picassoprops){
+
+    var data = [];
+    var range = [];
+    var layers = picassoprops.componentsDef.layers.forEach(y => {
+      if(y.layershow && y.legshow){
+        switch (y.layertype) {
+          case 'line':
+            data.push(y.layername);
+            if(y.linetype == 'line'){
+              range.push(y.primarycolor.color);
+            }else{
+              range.push(y.secondarycolor.color);
+            }
+            break;
+          case 'box':
+            data.push(y.layername);
+          case 'point':
+            data.push(y.layername);
+            range.push(y.secondarycolor.color);
+            break;
+          default:
+
+        }
+      }
+    });
+
+    var leg = {
+      type: "legend-cat",
+      scale: {
+        type: 'categorical-color',
+        data,
+        range
+      },
+      settings: {
+        item:{shape:{type:'circle'}},
+        title:{
+          show:(legDef.legtitle != ''),
+          text:legDef.legtitle
+        }
+      },
+      dock: legDef.axisdock,
+    };
+
+    return [leg];
+
   };
 
   var createLayer = function(layerDef) {
@@ -407,7 +493,7 @@ if (pieDef.layerfield1 != '') {
       },
       settings: {
         major: {
-          scale: boxDef.layerscale1 //Should be auto set to be the scale of the dimension
+          scale: boxDef.layerscale1, //Should be auto set to be the scale of the dimension
 
         },
         minor: {
@@ -518,7 +604,6 @@ if (pieDef.layerfield1 != '') {
   };
 
   var checkForNull = function(val, def){
-    console.log(val);
     if(typeof val == 'undefined'){
       return def;
     }else{
@@ -527,7 +612,7 @@ if (pieDef.layerfield1 != '') {
   }
 
   var createBoxLabel = function(boxDef, selector){
-    console.log(boxDef);
+    //console.log(boxDef);
     var label = {
     type: 'labels',
     key:boxDef.layername+'_label',
@@ -899,7 +984,7 @@ if (pieDef.layerfield1 != '') {
 
   var optionsListForFieldsDef = function(hypercubedef, valueType) {
     var list = [];
-    if (valueType == 1) {
+    if (valueType <= 1) {
       list.push({
         value: "",
         label: "None"

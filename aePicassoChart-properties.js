@@ -527,6 +527,12 @@ define(['./buildpicasso'], function(bp) {
               show:(y) => { return !~["pie","grid"].indexOf(y.layertype); }, //Not for pie and grid
               defaultValue: true
             },
+            layertitle: {
+              type: "string",
+              ref: "layertitle",
+              label: "Layer Title",
+              expression:"optional"
+            },
             linetype: {
               type: "string",
               component: "dropdown",
@@ -1419,6 +1425,27 @@ define(['./buildpicasso'], function(bp) {
                       return bp.optionsListForScales(y.properties.picassoprops.scalesDef, 0);
                     }
                   }),
+                  axismode:{
+                    type: "string",
+                    component: "dropdown",
+                    ref: "axismode",
+                    label: "Axis Mode",
+                    options: [
+                      {
+                        value: "labels",
+                        label: "Labels"
+                      },
+                      {
+                        value: "title",
+                        label: "Title"
+                      },
+                      {
+                        value: "both",
+                        label: "Both"
+                      },
+                    ],
+                    defaultValue: "both"
+                  },
                   axislabelmode: {
                     type: "string",
                     component: "dropdown",
@@ -1501,6 +1528,27 @@ define(['./buildpicasso'], function(bp) {
       sorting: {
         uses: "sorting"
       },
+      addons: {
+        uses:"addons",
+        items:{
+          datahandling:{
+            grouped:true,
+            label:"Data handling",
+            items:{
+              includezero:{
+                type:"boolean",
+                ref:"picassoprops.includezero",
+                label:"Include zero values",
+                change:(x,y) => {
+                  console.log(x);
+                  console.log(y);
+                  x.qHyperCubeDef.qSuppressZero = x.picassoprops.includezero;
+                }
+              }
+            }
+          }
+        }
+			},
       appearance: {
         uses: "settings",
       },

@@ -158,6 +158,26 @@ define(['jquery',
   //Axis Component - Note this creates two picasso components
   var createAxis = function(axisDef, hypercube, scalesDef) {
     var scaleIndex = scalesDef.map(e => e.scalename).indexOf(axisDef.axisscale);
+
+    var titleShow = true;
+    var labelShow = true;
+    switch (axisDef.axismode) {
+      case 'labels':
+        titleShow = false;
+        labelShow = true;
+        break;
+      case 'title':
+        titleShow = true;
+        labelShow = false;
+        break;
+      case 'both':
+        titleShow = true;
+        labelShow = true;
+        break;
+      default:
+
+    }
+
     if(scaleIndex != -1){
       var axisFieldDef = scalesDef[scaleIndex].scalefield;
       if(axisFieldDef == "") return null;
@@ -167,6 +187,7 @@ define(['jquery',
         type: 'text',
         text: hypercube[dimMes[0]][dimMes[1]].qFallbackTitle,
         displayOrder:1,
+        show:titleShow,
         style: {
           text: {
             fontSize: '13px',
@@ -180,6 +201,7 @@ define(['jquery',
         type: 'axis',
         scale: axisDef.axisscale,
         dock: axisDef.axisdock,
+        show:labelShow,
         displayOrder:0,
         settings: {
           labels: {
@@ -260,9 +282,14 @@ define(['jquery',
     var range = [];
     var layers = picassoprops.componentsDef.layers.forEach(y => {
       if(y.layershow && y.legshow){
+        var titletext = y.layertitle;
+        if(typeof y.layertitle == "undefined" || y.layertitle == "" ){
+          titletext = y.layername;
+        }
+
         switch (y.layertype) {
           case 'line':
-            data.push(y.layername);
+            data.push(titletext);
             if(y.linetype == 'line'){
               range.push(y.primarycolor.color);
             }else{
@@ -270,9 +297,9 @@ define(['jquery',
             }
             break;
           case 'box':
-            data.push(y.layername);
+            data.push(titletext);
           case 'point':
-            data.push(y.layername);
+            data.push(titletext);
             range.push(y.secondarycolor.color);
             break;
           default:

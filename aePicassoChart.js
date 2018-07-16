@@ -9,7 +9,8 @@ define([
 
       picasso.use(pq)
       //picasso.renderer.prio(["canvas"]);
-      console.log(picasso.version);
+      console.log("Picasso Version: " + picasso.version);
+      console.log("Picasso Designer Version: 0.2.0");
       picasso.style = {fontFamily:'"QlikView Sans", sans-serif'};
 
       return {
@@ -43,8 +44,9 @@ define([
         paint: function($element, layout) {
 
 
+
           layout.picassoprops.fieldOptions = bp.optionsListForFields(layout.qHyperCube);
-          //console.log(layout);
+          console.log(layout);
 
           var first = false;
           if (typeof this.chart == 'undefined') {
@@ -74,6 +76,8 @@ define([
             };
             //console.log(settings);
             //console.log(JSON.stringify(settings));
+
+            
 
             /*****************************************************************************************************
             /*** Having to recreate the chart as when updating the settings the line layer does not refresh (might be bug in picasso)

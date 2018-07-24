@@ -10,6 +10,11 @@ Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 1. Created the axis as a docked item
 1. Add a layer for each chart item needed, choice from (Line, Bar, Point, Pie, Grid)
 
+## Supoprt in BETA v0.2.1 - 24/07/2018
+* Picassojs v.0.11.0
+* Expression legend labels
+* Hide zero values (hypercube option)
+
 ## Support in BETA v0.2 - 02/07/2018
 * Layer legend
 * Multiple fields on scales (max 3)

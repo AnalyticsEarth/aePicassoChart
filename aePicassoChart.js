@@ -10,7 +10,7 @@ define([
       picasso.use(pq)
       //picasso.renderer.prio(["canvas"]);
       console.log("Picasso Version: " + picasso.version);
-      console.log("Picasso Designer Version: 0.2.0");
+      console.log("Picasso Designer Version: 0.2.1");
       picasso.style = {fontFamily:'"QlikView Sans", sans-serif'};
 
       return {
@@ -77,7 +77,7 @@ define([
             //console.log(settings);
             //console.log(JSON.stringify(settings));
 
-            
+
 
             /*****************************************************************************************************
             /*** Having to recreate the chart as when updating the settings the line layer does not refresh (might be bug in picasso)

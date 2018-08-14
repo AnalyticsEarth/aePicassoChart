@@ -326,6 +326,20 @@ define(['./buildpicasso'], function(bp) {
           values: ["box"]
         }
       },
+      objectwidth: {
+        label: "Bar Width",
+        show: {
+          field: "layertype",
+          values: ["box"]
+        }
+      },
+      objectoffset: {
+        label: "Bar Offset",
+        show: {
+          field: "layertype",
+          values: ["box"]
+        }
+      },
     },
     grid: {
       layerscale1: {
@@ -733,7 +747,8 @@ define(['./buildpicasso'], function(bp) {
                 },
                 primarycolor: objForConditionalProp("primarycolor", "object", "color-picker", false, {
                   defaultValue: {
-                    index: 3
+                    index: 3,
+                    color: "#4477aa"
                   }
                 }),
                 primarywidth: objForConditionalProp("primarywidth", "number", "slider", true, {
@@ -752,7 +767,8 @@ define(['./buildpicasso'], function(bp) {
 
                 secondarycolor: objForConditionalProp("secondarycolor", "object", "color-picker", false, {
                   defaultValue: {
-                    index: 3
+                    index: 3,
+                    color: "#4477aa"
                   }
                 }),
                 secondarywidth: objForConditionalProp("secondarywidth", "number", "slider", true, {
@@ -770,7 +786,8 @@ define(['./buildpicasso'], function(bp) {
 
                 thirdcolor: objForConditionalProp("thirdcolor", "object", "color-picker", false, {
                   defaultValue: {
-                    index: 1
+                    index: 3,
+                    color: "#4477aa"
                   }
                 }),
                 thirdwidth: objForConditionalProp("thirdwidth", "number", "slider", true, {
@@ -782,7 +799,8 @@ define(['./buildpicasso'], function(bp) {
 
                 forthcolor: objForConditionalProp("forthcolor", "object", "color-picker", false, {
                   defaultValue: {
-                    index: 1
+                    index: 3,
+                    color: "#4477aa"
                   }
                 }),
                 forthwidth: objForConditionalProp("forthwidth", "number", "slider", true, {
@@ -794,7 +812,8 @@ define(['./buildpicasso'], function(bp) {
 
                 fifthcolor: objForConditionalProp("fifthcolor", "object", "color-picker", false, {
                   defaultValue: {
-                    index: 1
+                    index: 3,
+                    color: "#4477aa"
                   }
                 }),
                 fifthwidth: objForConditionalProp("fifthwidth", "number", "slider", true, {
@@ -802,6 +821,18 @@ define(['./buildpicasso'], function(bp) {
                   min: 0,
                   max: 5,
                   step: 1
+                }),
+                objectwidth: objForConditionalProp("objectwidth", "number", "slider", true, {
+                  defaultValue: 1,
+                  min: 0,
+                  max: 1,
+                  step: 0.1
+                }),
+                objectoffset: objForConditionalProp("objectoffset", "number", "slider", true, {
+                  defaultValue: 1,
+                  min: 0,
+                  max: 1,
+                  step: 0.1
                 }),
               }
             }

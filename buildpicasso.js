@@ -521,7 +521,6 @@ if (pieDef.layerfield1 != '') {
       settings: {
         major: {
           scale: boxDef.layerscale1, //Should be auto set to be the scale of the dimension
-
         },
         minor: {
           scale: boxDef.layerscale2 //Should be auto set to the scale of the measure
@@ -613,6 +612,12 @@ if (pieDef.layerfield1 != '') {
 
       box.settings.median.strokeWidth = boxDef.fifthwidth;
 
+      //Bar Width and Offset
+      if (typeof boxDef.objectwidth != 'undefined')
+        box.settings.box.width = boxDef.objectwidth;
+
+      if (typeof boxDef.objectoffset != 'undefined')
+        box.settings.major.fn = function(d) {var a = d.scale(d.datum.value) + (d.scale.bandwidth()*boxDef.objectoffset); return a;  };
     }
 
     var label = createBoxLabel(boxDef, 'rect');

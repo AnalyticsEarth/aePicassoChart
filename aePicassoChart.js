@@ -21,13 +21,14 @@ define([
             qInitialDataFetch: [{
               qTop: 0,
               qLeft: 0,
-              qWidth: 6,
-              qHeight: 1666
+              qWidth: 0,
+              qHeight: 0
             }]
           },
           selections: 'CONFIRM',
           picassoprops: {
             scalesDef: [],
+            reflines: [],
             componentsDef: {
               axis: [],
               layers: []
@@ -37,7 +38,8 @@ define([
         support: {
           snapshot: true,
           export: true,
-          exportData: true
+          exportData: true,
+          viewData: true
         },
         definition: properties,
         template: '<div class="lrp" style="height:100%;position:relative;"></div>',
@@ -50,6 +52,9 @@ define([
 
           var first = false;
           if (typeof this.chart == 'undefined') {
+
+            //if()
+
             $element.empty();
             $element.html('<div class="lrp" style="height:100%;position:relative;"></div>');
 
@@ -96,6 +101,17 @@ define([
 
           }
 
+          this.backendApi.getData([{qTop:0,qLeft:0,qWidth:5,qHeight:10}]).then(qdp => {
+            console.log(qdp);
+            this.chart.update({
+              data: [{
+                type: 'q',
+                key: 'qHyperCube',
+                data: layout.qHyperCube
+              }]
+            });
+          });
+
             return new Promise((resolve, reject) => {
               if (this.chartBrush.isActive) this.chartBrush.end();
               resolve(layout);
@@ -106,9 +122,6 @@ define([
                   data: layout.qHyperCube
                 }]
               });
-
-
-
             })
           }
         }

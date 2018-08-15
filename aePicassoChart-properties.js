@@ -1585,6 +1585,7 @@ define(['./buildpicasso'], function(bp) {
           },
           refLines: {
             uses: "reflines",
+            show:false,
             ref:"picassoprops.reflines",
             items:{
               test:{
@@ -1600,45 +1601,54 @@ define(['./buildpicasso'], function(bp) {
             label: "Hypercube Size",
             type:"items",
             items:{
-              custom:{
+              content:{
                 type:"items",
-                ref:'picassoprops.helloworld',
-                component:{
-                  template:'<div>Hello World</div>',
-                  controller: ['$scope', function($scope /* and whatever deps you need */ ) {
-                    console.log("Hello World");
-                    console.log($scope);
-                     $scope.$emit('saveProperties') //to save changes
-                  }]
+                show: (d) => {
+                  var vc = bp.isVersionGreater(d.createdVersion,"0.2.2");
+                  return vc;
                 },
                 items:{
+                  hqlimit:{
+                    type:"boolean",
+                    ref:"picassoprops.cube.limit",
+                    label:"Limit Cube Size",
+                    defaultValue:false
+                  },
                   hqtop:{
                     type:"number",
-                    ref:"picassoprops.cubetop",
+                    ref:"picassoprops.cube.top",
                     label:"Top",
                     defaultValue:0
                   },
                   hqleft:{
                     type:"number",
-                    ref:"picassoprops.cubeleft",
+                    ref:"picassoprops.cube.left",
                     label:"Left",
                     defaultValue:0
                   },
                   hqwidth:{
                     type:"number",
-                    ref:"picassoprops.cubewidth",
+                    ref:"picassoprops.cube.width",
                     label:"Width",
                     defaultValue:0
                   },
                   hqheight:{
                     type:"number",
-                    ref:"picassoprops.cubeheight",
+                    ref:"picassoprops.cube.height",
                     label:"Height",
                     defaultValue:0
-                  }
+                  },
                 }
               },
-
+              info:{
+                type:"string",
+                component:"text",
+                label:"These settings will only work on a new charts created after version 0.2.2",
+                show: (d) => {
+                  var vc = bp.isVersionGreater(d.createdVersion,"0.2.2");
+                  return !vc;
+                }
+              },
             }
           }
         }
@@ -1658,7 +1668,7 @@ define(['./buildpicasso'], function(bp) {
           about1a:{
             type:"string",
             component:"text",
-            label:"BETA: v0.2.1"
+            label:"BETA: v0.2.2"
           },
           about2:{
             type:"string",

@@ -12,6 +12,33 @@ define(['jquery',
         charts['bubble-grid'] = charttemplate_bubblegrid;
         charts['scatter'] = charttemplate_scatter;
 
+  //checkVersionNumbers
+  var isVersionGreater = function(extVersion, checkVersion){
+    console.log("Check " + extVersion + " >= " + checkVersion);
+    if(typeof extVersion == 'undefined') return false;
+    var extV = extVersion.split(".");
+    var cheV = checkVersion.split(".");
+    if(cheV[0] > extV[0]){ //Major Verion greater - false
+      return false;
+    }else if(cheV[0] == extV[0]){ //Major Versions the same
+      if(cheV[1] > extV[1]){ //Minor is greater - false
+        return false;
+      }else if(cheV[1] == extV[1]){ //Minor is the same
+        if(cheV[2] > extV[2]){ //Revision is greater - false
+          return false;
+        }else if(cheV[2] == extV[2]){ //Revision is the same - true
+          return true;
+        }else{ //Revision is smaller - true
+          return true;
+        }
+      }else{ //Minor is smaller - true
+        return true;
+      }
+    }else{ //Major is smaller - true
+      return true;
+    }
+    return false;
+  }
 
   //Create Collection
   var createCollections = function(hypercube) {
@@ -1147,6 +1174,7 @@ if (pieDef.layerfield1 != '') {
     optionsListForDimensionsDef,
     exportChart,
     importChart,
-    interactionsSetup
+    interactionsSetup,
+    isVersionGreater
   }
 })

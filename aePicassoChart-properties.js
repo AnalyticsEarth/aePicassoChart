@@ -746,6 +746,7 @@ define(['./buildpicasso'], function(bp) {
                   }
                 },
                 primarycolor: objForConditionalProp("primarycolor", "object", "color-picker", false, {
+                  dualOutput: true,
                   defaultValue: {
                     index: 3,
                     color: "#4477aa"
@@ -766,6 +767,7 @@ define(['./buildpicasso'], function(bp) {
                 primarydashpattern: objForConditionalProp("primarydashpattern", "string", null, true, null),
 
                 secondarycolor: objForConditionalProp("secondarycolor", "object", "color-picker", false, {
+                  dualOutput: true,
                   defaultValue: {
                     index: 3,
                     color: "#4477aa"
@@ -785,6 +787,7 @@ define(['./buildpicasso'], function(bp) {
                 }),
 
                 thirdcolor: objForConditionalProp("thirdcolor", "object", "color-picker", false, {
+                  dualOutput: true,
                   defaultValue: {
                     index: 3,
                     color: "#4477aa"
@@ -798,6 +801,7 @@ define(['./buildpicasso'], function(bp) {
                 }),
 
                 forthcolor: objForConditionalProp("forthcolor", "object", "color-picker", false, {
+                  dualOutput: true,
                   defaultValue: {
                     index: 3,
                     color: "#4477aa"
@@ -811,6 +815,7 @@ define(['./buildpicasso'], function(bp) {
                 }),
 
                 fifthcolor: objForConditionalProp("fifthcolor", "object", "color-picker", false, {
+                  dualOutput: true,
                   defaultValue: {
                     index: 3,
                     color: "#4477aa"
@@ -1022,6 +1027,7 @@ define(['./buildpicasso'], function(bp) {
               component:"color-picker",
               ref: "labelintocolor",
               label: "Into - Fill Color",
+              dualOutput: true,
               defaultValue:{
                 index:2,
                 color:'#545352'
@@ -1058,6 +1064,7 @@ define(['./buildpicasso'], function(bp) {
               component:"color-picker",
               ref: "labelinsidecolor",
               label: "Inside - Fill Color",
+              dualOutput: true,
               defaultValue:{
                 index:10,
                 color:'#ffffff'
@@ -1094,6 +1101,7 @@ define(['./buildpicasso'], function(bp) {
               component:"color-picker",
               ref: "labeloutsidecolor",
               label: "Outside - Fill Color",
+              dualOutput: true,
               defaultValue:{
                 index:2,
                 color:'#545352'
@@ -1133,6 +1141,7 @@ define(['./buildpicasso'], function(bp) {
               component:"color-picker",
               ref: "labeloppositecolor",
               label: "Opposite - Fill Color",
+              dualOutput: true,
               defaultValue:{
                 index:2,
                 color:'#545352'

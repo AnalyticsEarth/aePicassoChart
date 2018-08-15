@@ -12,6 +12,33 @@ define(['jquery',
         charts['bubble-grid'] = charttemplate_bubblegrid;
         charts['scatter'] = charttemplate_scatter;
 
+  //checkVersionNumbers
+  var isVersionGreater = function(extVersion, checkVersion){
+    console.log("Check " + extVersion + " >= " + checkVersion);
+    if(typeof extVersion == 'undefined') return false;
+    var extV = extVersion.split(".");
+    var cheV = checkVersion.split(".");
+    if(cheV[0] > extV[0]){ //Major Verion greater - false
+      return false;
+    }else if(cheV[0] == extV[0]){ //Major Versions the same
+      if(cheV[1] > extV[1]){ //Minor is greater - false
+        return false;
+      }else if(cheV[1] == extV[1]){ //Minor is the same
+        if(cheV[2] > extV[2]){ //Revision is greater - false
+          return false;
+        }else if(cheV[2] == extV[2]){ //Revision is the same - true
+          return true;
+        }else{ //Revision is smaller - true
+          return true;
+        }
+      }else{ //Minor is smaller - true
+        return true;
+      }
+    }else{ //Major is smaller - true
+      return true;
+    }
+    return false;
+  }
 
   //Create Collection
   var createCollections = function(hypercube) {
@@ -521,7 +548,6 @@ if (pieDef.layerfield1 != '') {
       settings: {
         major: {
           scale: boxDef.layerscale1, //Should be auto set to be the scale of the dimension
-
         },
         minor: {
           scale: boxDef.layerscale2 //Should be auto set to the scale of the measure
@@ -613,6 +639,12 @@ if (pieDef.layerfield1 != '') {
 
       box.settings.median.strokeWidth = boxDef.fifthwidth;
 
+      //Bar Width and Offset
+      if (typeof boxDef.objectwidth != 'undefined')
+        box.settings.box.width = boxDef.objectwidth;
+
+      if (typeof boxDef.objectoffset != 'undefined')
+        box.settings.major.fn = function(d) {var a = d.scale(d.datum.value) + (d.scale.bandwidth()*boxDef.objectoffset); return a;  };
     }
 
     var label = createBoxLabel(boxDef, 'rect');
@@ -1142,6 +1174,7 @@ if (pieDef.layerfield1 != '') {
     optionsListForDimensionsDef,
     exportChart,
     importChart,
-    interactionsSetup
+    interactionsSetup,
+    isVersionGreater
   }
 })

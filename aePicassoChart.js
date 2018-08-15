@@ -10,7 +10,7 @@ define([
       picasso.use(pq)
       //picasso.renderer.prio(["canvas"]);
       console.log("Picasso Version: " + picasso.version);
-      console.log("Picasso Designer Version: 0.2.1");
+      console.log("Picasso Designer Version: 0.2.2");
       picasso.style = {fontFamily:'"QlikView Sans", sans-serif'};
 
       return {
@@ -18,16 +18,19 @@ define([
           qHyperCubeDef: {
             qDimensions: [],
             qMeasures: [],
-            qInitialDataFetch: [{
+            /*qInitialDataFetch: [{
               qTop: 0,
               qLeft: 0,
-              qWidth: 6,
-              qHeight: 1666
-            }]
+              qWidth: 0,
+              qHeight: 0
+            }]*/
           },
           selections: 'CONFIRM',
+          createdVersion:'0.2.2',
           picassoprops: {
             scalesDef: [],
+            reflines: [],
+            cube:{},
             componentsDef: {
               axis: [],
               layers: []
@@ -37,7 +40,8 @@ define([
         support: {
           snapshot: true,
           export: true,
-          exportData: true
+          exportData: true,
+          viewData: true
         },
         definition: properties,
         template: '<div class="lrp" style="height:100%;position:relative;"></div>',
@@ -46,10 +50,13 @@ define([
 
 
           layout.picassoprops.fieldOptions = bp.optionsListForFields(layout.qHyperCube);
-          console.log(layout);
+          //console.log(layout);
 
           var first = false;
           if (typeof this.chart == 'undefined') {
+
+            //if()
+
             $element.empty();
             $element.html('<div class="lrp" style="height:100%;position:relative;"></div>');
 
@@ -96,6 +103,45 @@ define([
 
           }
 
+          var size = {};
+          try {
+            size = {
+              qTop:layout.picassoprops.cube.top,
+              qLeft:layout.picassoprops.cube.left,
+              qWidth:layout.picassoprops.cube.width,
+              qHeight:layout.picassoprops.cube.height
+            };
+
+            if(!layout.picassoprops.cube.limit){
+              //If limit is switched off, then use hypercube size
+              size.qTop = 0;
+              size.qLeft = 0;
+              size.qWidth = layout.qHyperCube.qSize.qcx;
+              size.qHeight = layout.qHyperCube.qSize.qcy;
+            }
+
+          }catch(err){
+            size = {
+              qTop:0,
+              qLeft:0,
+              qWidth:layout.qHyperCube.qSize.qcx,
+              qHeight:layout.qHyperCube.qSize.qcy
+            };
+          }
+
+          //console.log(size);
+
+          this.backendApi.getData([size]).then(qdp => {
+            //console.log(qdp);
+            this.chart.update({
+              data: [{
+                type: 'q',
+                key: 'qHyperCube',
+                data: layout.qHyperCube
+              }]
+            });
+          });
+
             return new Promise((resolve, reject) => {
               if (this.chartBrush.isActive) this.chartBrush.end();
               resolve(layout);
@@ -106,9 +152,6 @@ define([
                   data: layout.qHyperCube
                 }]
               });
-
-
-
             })
           }
         }

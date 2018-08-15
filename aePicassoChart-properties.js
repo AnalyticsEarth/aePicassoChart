@@ -532,7 +532,7 @@ define(['./buildpicasso'], function(bp) {
               type: "boolean",
               ref: "layershow",
               label: "Show Layer",
-              defaultValue: true
+              defaultValue: true,
             },
             legshow: {
               type: "boolean",
@@ -1166,7 +1166,7 @@ define(['./buildpicasso'], function(bp) {
           },
           measures: {
             min: 1,
-          }
+          },
         }
       },
       templates: {
@@ -1572,19 +1572,83 @@ define(['./buildpicasso'], function(bp) {
         uses:"addons",
         items:{
           datahandling:{
-            grouped:true,
-            label:"Data handling",
+            uses: "dataHandling",
             items:{
-              includezero:{
-                type:"boolean",
-                ref:"picassoprops.includezero",
-                label:"Include zero values",
-                change:(x,y) => {
-                  console.log(x);
-                  console.log(y);
-                  x.qHyperCubeDef.qSuppressZero = x.picassoprops.includezero;
-                }
+              suppressZero: {
+                ref: "qHyperCubeDef.qSuppressZero",
+              },
+              calcCond: {
+                uses: "calcCond",
+                ref: "qHyperCubeDef"
+              },
+            }
+          },
+          refLines: {
+            uses: "reflines",
+            show:false,
+            ref:"picassoprops.reflines",
+            items:{
+              test:{
+                type:"string",
+                component:"dropdown",
+                ref:"test",
+                label:"Axis",
+                options: (d,e) => {return e.properties.picassoprops.componentsDef.axis.filter(item => item.dockeditemtype == 'axis').map((item,index) => {return {value:"axis_"+index, label:item.axisscale + " (" + item.axisdock + ")"}});}
               }
+            }
+          },
+          hypercubeSize:{
+            label: "Hypercube Size",
+            type:"items",
+            items:{
+              content:{
+                type:"items",
+                show: (d) => {
+                  var vc = bp.isVersionGreater(d.createdVersion,"0.2.2");
+                  return vc;
+                },
+                items:{
+                  hqlimit:{
+                    type:"boolean",
+                    ref:"picassoprops.cube.limit",
+                    label:"Limit Cube Size",
+                    defaultValue:false
+                  },
+                  hqtop:{
+                    type:"number",
+                    ref:"picassoprops.cube.top",
+                    label:"Top",
+                    defaultValue:0
+                  },
+                  hqleft:{
+                    type:"number",
+                    ref:"picassoprops.cube.left",
+                    label:"Left",
+                    defaultValue:0
+                  },
+                  hqwidth:{
+                    type:"number",
+                    ref:"picassoprops.cube.width",
+                    label:"Width",
+                    defaultValue:0
+                  },
+                  hqheight:{
+                    type:"number",
+                    ref:"picassoprops.cube.height",
+                    label:"Height",
+                    defaultValue:0
+                  },
+                }
+              },
+              info:{
+                type:"string",
+                component:"text",
+                label:"These settings will only work on a new charts created after version 0.2.2",
+                show: (d) => {
+                  var vc = bp.isVersionGreater(d.createdVersion,"0.2.2");
+                  return !vc;
+                }
+              },
             }
           }
         }
@@ -1604,7 +1668,7 @@ define(['./buildpicasso'], function(bp) {
           about1a:{
             type:"string",
             component:"text",
-            label:"BETA: v0.2.1"
+            label:"BETA: v0.2.2"
           },
           about2:{
             type:"string",

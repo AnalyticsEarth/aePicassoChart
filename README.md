@@ -10,6 +10,10 @@ Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 1. Created the axis as a docked item
 1. Add a layer for each chart item needed, choice from (Line, Bar, Point, Pie, Grid)
 
+## Support in BETA v0.2.3 - 16/08/2018
+* Color Picker supports themes (themes will be auto applied when changed)
+* Fix bug in 0.2.2 causing extra data points
+
 ## Support in BETA v0.2.2 - 15/08/2018
 * Fix Color Picker
 * Add Bar width and offset (allow side by side bars)

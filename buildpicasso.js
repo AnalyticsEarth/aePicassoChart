@@ -12,9 +12,47 @@ define(['jquery',
         charts['bubble-grid'] = charttemplate_bubblegrid;
         charts['scatter'] = charttemplate_scatter;
 
+        var props = null;
+
+        var setProps = function(p){
+          props = p;
+        }
+
+        /*
+        //var e = s.getStyle(u, "box.box", "fill");
+        //var r = s.Theme.currentPalette.indexOf(e);
+        */
+
+  var colorForTheme = function(colorPickerObject){
+    var theme = props.theme;
+    //console.log(theme);
+    //console.log(colorPickerObject);
+    if(theme != null){
+      //Use Theme colors
+      if(colorPickerObject.index != -1){
+        try{
+          if(theme.properties.palettes.ui[0].colors[0] == "none"){
+            return theme.properties.palettes.ui[0].colors[colorPickerObject.index];
+          }else{
+            return theme.properties.palettes.ui[0].colors[(colorPickerObject.index -1)];
+          }
+
+        }catch(err){
+          return colorPickerObject.color;
+        }
+      }else{
+        return colorPickerObject.color;
+      }
+
+    }else{
+      //Backup to whatever is in the picker colors
+      return colorPickerObject.color;
+    }
+  };
+
   //checkVersionNumbers
   var isVersionGreater = function(extVersion, checkVersion){
-    console.log("Check " + extVersion + " >= " + checkVersion);
+    //console.log("Check " + extVersion + " >= " + checkVersion);
     if(typeof extVersion == 'undefined') return false;
     var extV = extVersion.split(".");
     var cheV = checkVersion.split(".");
@@ -38,7 +76,7 @@ define(['jquery',
       return true;
     }
     return false;
-  }
+  };
 
   //Create Collection
   var createCollections = function(hypercube) {
@@ -318,16 +356,16 @@ define(['jquery',
           case 'line':
             data.push(titletext);
             if(y.linetype == 'line'){
-              range.push(y.primarycolor.color);
+              range.push(colorForTheme(y.primarycolor));
             }else{
-              range.push(y.secondarycolor.color);
+              range.push(colorForTheme(y.secondarycolor));
             }
             break;
           case 'box':
             data.push(titletext);
           case 'point':
             data.push(titletext);
-            range.push(y.secondarycolor.color);
+            range.push(colorForTheme(y.secondarycolor));
             break;
           default:
 
@@ -414,8 +452,8 @@ define(['jquery',
 
     if (!lineDef.showpresentation) {
       line.settings.layers.curve = lineDef.layercurve;
-      if (typeof lineDef.primarycolor.color != 'undefined') {
-        line.settings.layers.line.stroke = lineDef.primarycolor.color;
+      if (typeof lineDef.primarycolor != 'undefined') {
+        line.settings.layers.line.stroke = colorForTheme(lineDef.primarycolor);
       }
 
       line.settings.layers.line.strokeWidth = lineDef.primarywidth;
@@ -426,8 +464,8 @@ define(['jquery',
     if (~["area", "rangearea"].indexOf(lineDef.linetype)) {
       line.settings.layers.area = {};
       if (!lineDef.showpresentation) {
-        if (typeof lineDef.secondarycolor.color != 'undefined')
-          line.settings.layers.area.fill = lineDef.secondarycolor.color;
+        if (typeof lineDef.secondarycolor != 'undefined')
+          line.settings.layers.area.fill = colorForTheme(lineDef.secondarycolor);
         line.settings.layers.area.opacity = lineDef.secondaryopacity;
       }
     }
@@ -479,8 +517,8 @@ define(['jquery',
 
 if (!pieDef.showpresentation) {
 
-  if (typeof pieDef.primarycolor.color != 'undefined') {
-    pie.settings.slice.stroke = pieDef.primarycolor.color;
+  if (typeof pieDef.primarycolor != 'undefined') {
+    pie.settings.slice.stroke = colorForTheme(pieDef.primarycolor);
   }
   pie.settings.slice.strokeWidth = pieDef.primarywidth;
   pie.settings.slice.opacity = pieDef.primaryopacity;
@@ -613,29 +651,29 @@ if (pieDef.layerfield1 != '') {
     }
 
     if (!boxDef.showpresentation) {
-      if (typeof boxDef.primarycolor.color != 'undefined')
-        box.settings.box.stroke = boxDef.primarycolor.color;
+      //if (typeof boxDef.primarycolor != 'undefined')
+        box.settings.box.stroke = colorForTheme(boxDef.primarycolor);
 
       box.settings.box.strokeWidth = boxDef.primarywidth;
 
-      if (typeof boxDef.secondarycolor.color != 'undefined')
-        box.settings.box.fill = boxDef.secondarycolor.color;
+      //if (typeof boxDef.secondarycolor != 'undefined')
+        box.settings.box.fill = colorForTheme(boxDef.secondarycolor);
 
       //Line
-      if (typeof boxDef.thirdcolor.color != 'undefined')
-        box.settings.line.stroke = boxDef.thirdcolor.color;
+      if (typeof boxDef.thirdcolor != 'undefined')
+        box.settings.line.stroke = colorForTheme(boxDef.thirdcolor);
 
       box.settings.line.strokeWidth = boxDef.thirdwidth;
 
       //Whisker
-      if (typeof boxDef.forthcolor.color != 'undefined')
-        box.settings.whisker.stroke = boxDef.forthcolor.color;
+      if (typeof boxDef.forthcolor != 'undefined')
+        box.settings.whisker.stroke = colorForTheme(boxDef.forthcolor);
 
       box.settings.whisker.strokeWidth = boxDef.forthwidth;
 
       //Median
-      if (typeof boxDef.fifthcolor.color != 'undefined')
-        box.settings.median.stroke = boxDef.fifthcolor.color;
+      if (typeof boxDef.fifthcolor != 'undefined')
+        box.settings.median.stroke = colorForTheme(boxDef.fifthcolor);
 
       box.settings.median.strokeWidth = boxDef.fifthwidth;
 
@@ -697,9 +735,9 @@ if (pieDef.layerfield1 != '') {
                 return d.data.end.label;
               },
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
-                { position: 'inside', fill: checkForNull(boxDef.labelinsidecolor,{index:10,color:'#ffffff'}).color , justify:checkForNull(boxDef.labelinsidejustify,0.5), align: checkForNull(boxDef.labelinsidealign,0.5)  },
-                { position: 'outside', fill: checkForNull(boxDef.labeloutsidecolor,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.labeloutsidejustify,0.5), align: checkForNull(boxDef.labeloutsidealign,0.5) },
-                { position: 'opposite', fill: checkForNull(boxDef.labeloppositecolor,{index:2,color:'#545352'}).color, justify:checkForNull(boxDef.labeloppositejustify,0.5), align: checkForNull(boxDef.labeloppositealign,0.5)  },
+                { position: 'inside', fill: colorForTheme(checkForNull(boxDef.labelinsidecolor,{index:10,color:'#ffffff'})) , justify:checkForNull(boxDef.labelinsidejustify,0.5), align: checkForNull(boxDef.labelinsidealign,0.5)  },
+                { position: 'outside', fill: colorForTheme(checkForNull(boxDef.labeloutsidecolor,{index:2,color:'#545352'})), justify:checkForNull(boxDef.labeloutsidejustify,0.5), align: checkForNull(boxDef.labeloutsidealign,0.5) },
+                { position: 'opposite', fill: colorForTheme(checkForNull(boxDef.labeloppositecolor,{index:2,color:'#545352'})), justify:checkForNull(boxDef.labeloppositejustify,0.5), align: checkForNull(boxDef.labeloppositealign,0.5)  },
               ]
             }]
           }
@@ -739,14 +777,14 @@ if (pieDef.layerfield1 != '') {
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
               /*  { position: 'into', fill: pieDef.label.into.color.color},
                 { position: 'inside', fill: pieDef.label.inside.color.color},*/
-                { position: 'outside', fill: checkForNull(pieDef.label.outside.color,{index:2,color:'#545352'}).color},
+                { position: 'outside', fill: colorForTheme(checkForNull(pieDef.label.outside.color,{index:2,color:'#545352'}))},
               ]
             },{
               label: (d) => {
                 return d.data.arc.label;
               },
               placements: [ // label placements in prio order. Label will be placed in the first place it fits into
-                { position: 'outside', fill: checkForNull(pieDef.label.inside.color,{index:10,color:'#ffffff'}).color},
+                { position: 'outside', fill: colorForTheme(checkForNull(pieDef.label.inside.color,{index:10,color:'#ffffff'}))},
               /*  { position: 'inside', fill: pieDef.label.inside.color.color},
                 { position: 'outside', fill: pieDef.label.outside.color.color},*/
               ]
@@ -834,12 +872,12 @@ if (pieDef.layerfield1 != '') {
     }
 
     if (!pointDef.showpresentation) {
-      if (typeof pointDef.primarycolor.color != 'undefined')
-        point.settings.stroke = pointDef.primarycolor.color;
+      if (typeof pointDef.primarycolor != 'undefined')
+        point.settings.stroke = colorForTheme(pointDef.primarycolor);
       point.settings.strokeWidth = pointDef.primarywidth;
       point.settings.opacity = pointDef.primaryopacity;
 
-      if (typeof point.settings.fill == 'undefined' && typeof pointDef.secondarycolor.color != 'undefined') point.settings.fill = pointDef.secondarycolor.color;
+      if (typeof point.settings.fill == 'undefined' && typeof pointDef.secondarycolor != 'undefined') point.settings.fill = colorForTheme(pointDef.secondarycolor);
 
     }
 
@@ -891,12 +929,12 @@ if (pieDef.layerfield1 != '') {
     }
 
     if (!gridDef.showpresentation) {
-      if (typeof gridDef.primarycolor.color != 'undefined')
-        grid.ticks.stroke = gridDef.primarycolor.color;
+      if (typeof gridDef.primarycolor != 'undefined')
+        grid.ticks.stroke = colorForTheme(gridDef.primarycolor);
       grid.ticks.strokeWidth = gridDef.primarywidth;
 
-      if (typeof gridDef.secondarycolor.color != 'undefined')
-        grid.minorTicks.stroke = gridDef.secondarycolor.color;
+      if (typeof gridDef.secondarycolor != 'undefined')
+        grid.minorTicks.stroke = colorForTheme(gridDef.secondarycolor);
       grid.minorTicks.strokeWidth = gridDef.secondarywidth;
     }
 
@@ -1175,6 +1213,8 @@ if (pieDef.layerfield1 != '') {
     exportChart,
     importChart,
     interactionsSetup,
-    isVersionGreater
+    isVersionGreater,
+    setProps,
+    props
   }
 })

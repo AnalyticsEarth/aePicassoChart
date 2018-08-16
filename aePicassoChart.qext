@@ -3,7 +3,7 @@
 	"description" : "Extension for Qlik Sense that allows you to build almost any Picasso.js chart without needing to write any code. The chart composition is very flexible to use the full range of power provided by the Picasso.js library.",
 	"icon" : "palette",
 	"type" : "visualization",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"preview" : "extension",
 	"author": "Steven Pressland - Principal Solution Architect - steven.pressland@qlik.com"
 }

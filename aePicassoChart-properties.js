@@ -1,5 +1,7 @@
 define(['./buildpicasso'], function(bp) {
 
+
+
   var propertySettings = {
     line: {
       linetype: {
@@ -749,7 +751,6 @@ define(['./buildpicasso'], function(bp) {
                   dualOutput: true,
                   defaultValue: {
                     index: 3,
-                    color: "#4477aa"
                   }
                 }),
                 primarywidth: objForConditionalProp("primarywidth", "number", "slider", true, {
@@ -770,7 +771,6 @@ define(['./buildpicasso'], function(bp) {
                   dualOutput: true,
                   defaultValue: {
                     index: 3,
-                    color: "#4477aa"
                   }
                 }),
                 secondarywidth: objForConditionalProp("secondarywidth", "number", "slider", true, {
@@ -790,7 +790,6 @@ define(['./buildpicasso'], function(bp) {
                   dualOutput: true,
                   defaultValue: {
                     index: 3,
-                    color: "#4477aa"
                   }
                 }),
                 thirdwidth: objForConditionalProp("thirdwidth", "number", "slider", true, {
@@ -804,7 +803,6 @@ define(['./buildpicasso'], function(bp) {
                   dualOutput: true,
                   defaultValue: {
                     index: 3,
-                    color: "#4477aa"
                   }
                 }),
                 forthwidth: objForConditionalProp("forthwidth", "number", "slider", true, {
@@ -818,7 +816,6 @@ define(['./buildpicasso'], function(bp) {
                   dualOutput: true,
                   defaultValue: {
                     index: 3,
-                    color: "#4477aa"
                   }
                 }),
                 fifthwidth: objForConditionalProp("fifthwidth", "number", "slider", true, {
@@ -834,7 +831,7 @@ define(['./buildpicasso'], function(bp) {
                   step: 0.1
                 }),
                 objectoffset: objForConditionalProp("objectoffset", "number", "slider", true, {
-                  defaultValue: 1,
+                  defaultValue: 0.5,
                   min: 0,
                   max: 1,
                   step: 0.1
@@ -1668,7 +1665,7 @@ define(['./buildpicasso'], function(bp) {
           about1a:{
             type:"string",
             component:"text",
-            label:"BETA: v0.2.2"
+            label:"BETA: v0.2.3"
           },
           about2:{
             type:"string",
@@ -1689,6 +1686,7 @@ define(['./buildpicasso'], function(bp) {
         }
       },
     }
-  };
+
+};
 
 })

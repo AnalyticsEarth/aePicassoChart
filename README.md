@@ -7,7 +7,7 @@ Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 ## Important Information ( August 2018 )
 >This extension code requires packing using the qExt tools. You can no longer download the repo and directly install. To get the correct approved version download from the releases page
 
-[GitHub releases page] (https://github.com/AnalyticsEarth/aePicassoChart/releases)
+[GitHub releases page](https://github.com/AnalyticsEarth/aePicassoChart/releases)
 [qExt](https://github.com/axisgroup/qExt)
 
 ## How to create a chart

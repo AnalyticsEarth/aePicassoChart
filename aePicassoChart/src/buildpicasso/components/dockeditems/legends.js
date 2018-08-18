@@ -1,3 +1,5 @@
+import {colorForTheme} from '../../functions.js'
+
 var createLegend = function(legDef, hypercube, picassoprops) {
   if (legDef.legendtype == "legend-seq") {
     return createSeqLegend(legDef);

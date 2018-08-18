@@ -4,6 +4,10 @@ Picasso Designer is an extension to aid building complex charts based on the Pic
 
 Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 
+```
+This extension code requires packing using the qExt standard. You can no longer download the repo and directly install. To get the correct approved version download from the [GitHub releases page] (https://github.com/AnalyticsEarth/aePicassoChart/releases)
+```
+
 ## How to create a chart
 1. Add Data, Dimension and Measures
 1. Create the scales required
@@ -15,22 +19,16 @@ Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 * Support for Picasso.js theme settings and compliance to the Qlik Sense selected theme (colors, font size)
 * Reference Lines (on numeric axis)
 
-## Support in BETA v0.2.3 - 16/08/2018
+## Support in BETA v0.2
 * Color Picker supports themes (themes will be auto applied when changed)
 * Fix bug in 0.2.2 causing extra data points
-
-## Support in BETA v0.2.2 - 15/08/2018
 * Fix Color Picker
 * Add Bar width and offset (allow side by side bars)
 * Specify the size and position of the hypercube
 * Enables calculation conditions for chart level
-
-## Support in BETA v0.2.1 - 24/07/2018
 * Picassojs v.0.11.0
 * Expression legend labels
 * Hide zero values (hypercube option)
-
-## Support in BETA v0.2 - 02/07/2018
 * Layer legend
 * Multiple fields on scales (max 3)
 

@@ -1,0 +1,99 @@
+{
+  "info": {
+    "version": "0.1",
+    "exportDate": "2018-06-22T13:08:15.208Z"
+  },
+  "chartspec": {
+    "scales": [{
+      "scalename": "majorscale",
+      "scalefield": "qDimensionInfo/0",
+      "scaleinvert": false,
+      "scaletype": "",
+      "scaleinclude": "",
+      "scaleexpand": 0,
+      "scalepadding": 0.11,
+      "cId": "JpxYyvD"
+    }, {
+      "scalename": "minorscale",
+      "scalefield": "qMeasureInfo/0",
+      "scaleinvert": true,
+      "scaletype": "linear",
+      "scaleinclude": "0",
+      "scaleexpand": 0,
+      "scalepadding": 0,
+      "cId": "avmXbj"
+    }],
+    "components": {
+      "axis": [{
+        "dockeditemtype": "axis",
+        "axisscale": "minorscale",
+        "axisdock": "left",
+        "axislabelmode": "auto",
+        "axistiltangle": 0,
+        "legendtype": "legend-cat",
+        "colorscale": "",
+        "cId": "AhLjzpa"
+      }, {
+        "dockeditemtype": "axis",
+        "axisscale": "majorscale",
+        "axisdock": "bottom",
+        "axislabelmode": "auto",
+        "axistiltangle": 0,
+        "legendtype": "legend-cat",
+        "colorscale": "",
+        "cId": "PSaxJj"
+      }],
+      "layers": [{
+        "layertype": "line",
+        "layername": "Line1",
+        "layershow": true,
+        "linetype": "line",
+        "boxtype": "bar",
+        "layerscale1": "majorscale",
+        "layerfield1": "d0",
+        "layerscale2": "minorscale",
+        "layerfield2": "m0",
+        "layerscale3": "",
+        "layerfield3": "",
+        "layerscale4": "",
+        "layerfield4": "",
+        "layerscale5": "",
+        "layerfield5": "",
+        "layerscale6": "",
+        "layerfield6": "",
+        "layerscale7": "",
+        "layerfield7": "",
+        "orientation": "vertical",
+        "showpresentation": true,
+        "layercurve": "linear",
+        "primarycolor": {
+          "index": 3
+        },
+        "primarywidth": 1,
+        "primaryopacity": 1,
+        "primarydashpattern": "",
+        "secondarycolor": {
+          "index": 3
+        },
+        "secondarywidth": 1,
+        "secondaryopacity": 1,
+        "thirdcolor": {
+          "index": 1
+        },
+        "thirdwidth": 1,
+        "forthcolor": {
+          "index": 1
+        },
+        "forthwidth": 1,
+        "fifthcolor": {
+          "index": 1
+        },
+        "fifthwidth": 1,
+        "showpointtype": true,
+        "pointshape": "circle",
+        "pointsize": 1,
+        "cId": "zvpBW"
+      }]
+    }
+  }
+}

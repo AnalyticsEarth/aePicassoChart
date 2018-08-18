@@ -1,0 +1,14 @@
+{
+  "plugins":[
+    ["version-transform"]
+],
+  "presets": [
+    "env",
+    ["minify",{
+      "removeConsole":{
+        "exclude": [ "error", "warn", "info"]
+      },
+      "removeDebugger":true
+      }]
+  ]
+}

@@ -4,9 +4,9 @@ Picasso Designer is an extension to aid building complex charts based on the Pic
 
 Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 
-```
-This extension code requires packing using the qExt standard. You can no longer download the repo and directly install. To get the correct approved version download from the [GitHub releases page] (https://github.com/AnalyticsEarth/aePicassoChart/releases)
-```
+## Important Change Information ( August 2018 )
+>This extension code requires packing using the qExt standard. You can no longer download the repo and directly install. To get the correct approved version download from the [GitHub releases page] (https://github.com/AnalyticsEarth/aePicassoChart/releases)
+
 
 ## How to create a chart
 1. Add Data, Dimension and Measures

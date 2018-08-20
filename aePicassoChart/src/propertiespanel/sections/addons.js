@@ -5,15 +5,6 @@ let addons = {
   items: {
     datahandling: {
       uses: "dataHandling",
-      items: {
-        suppressZero: {
-          ref: "qHyperCubeDef.qSuppressZero",
-        },
-        calcCond: {
-          uses: "calcCond",
-          ref: "qHyperCubeDef"
-        },
-      }
     },
     refLines: {
       uses: "reflines",

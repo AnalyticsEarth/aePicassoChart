@@ -5,10 +5,12 @@ Picasso Designer is an extension to aid building complex charts based on the Pic
 Watch an introduction video here: [YouTube](https://youtu.be/0tLm7Lf3TYc)
 
 ## Important Information ( August 2018 )
->This extension code requires packing using the qExt tools. You can no longer download the repo and directly install. To get the correct approved version download from the releases page
+>This extension code requires packing using the qExt tools. You can no longer download the repo and directly install. To get the correct approved version download from the releases page (file: aePicassoChart.zip) and install directly into Qlik Sense.
 
-[GitHub releases page](https://github.com/AnalyticsEarth/aePicassoChart/releases)
-[qExt](https://github.com/axisgroup/qExt)
+* [GitHub releases page](https://github.com/AnalyticsEarth/aePicassoChart/releases)
+
+Only developers need to use qExt
+* [qExt](https://github.com/axisgroup/qExt)
 
 ## How to create a chart
 1. Add Data, Dimension and Measures

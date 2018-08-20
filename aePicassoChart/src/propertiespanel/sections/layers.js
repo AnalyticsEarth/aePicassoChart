@@ -283,7 +283,8 @@ let layeritems = {
                 max: 1,
                 step: 0.01
               }),
-              primarydashpattern: objForConditionalProp("primarydashpattern", "string", null, true, null),
+              primarydashpattern: objForConditionalProp("primarydashpattern", "string", null, true, {expression:"optional"}),
+
 
               secondarycolor: objForConditionalProp("secondarycolor", "object", "color-picker", false, {
                 dualOutput: true,

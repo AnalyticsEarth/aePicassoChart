@@ -3,7 +3,7 @@ import {colorForTheme, getThemeStyle} from '../functions.js'
 
 
 let createRefLines = function(refLineDefs, theme){
-  console.log(theme);
+  //console.log(theme);
   if(typeof refLineDefs == 'undefined') return null;
   if(refLineDefs.length == 0) return null;
 
@@ -58,7 +58,7 @@ let createRefLines = function(refLineDefs, theme){
 let createRefLine = function(refLineDef, theme){
 
   if(refLineDef.show){
-    
+
     let scaleaxis = refLineDef.scale.split("|");
 
     let axis = 'x';

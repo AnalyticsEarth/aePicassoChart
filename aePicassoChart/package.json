@@ -1,6 +1,6 @@
 {
   "name": "aePicassoChart",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "scripts": {
     "build-webpack": "qext-scripts -b",
     "watch-webpack": "qext-scripts -w",

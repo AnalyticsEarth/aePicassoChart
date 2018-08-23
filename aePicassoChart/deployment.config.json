@@ -1,10 +1,10 @@
 {
   "server": {
-    "host": "hostname",
+    "host": "qmi-qs-cln",
     "isSecure": false,
     "prefix": "hdr",
     "headers": {
-      "hdr-usr": "domain\\username",
+      "hdr-usr": "QMI-QS-CLN\\qlik",
       "cache-control": "no-cache"
     },
     "addParams": {

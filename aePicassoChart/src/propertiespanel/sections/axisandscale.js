@@ -181,6 +181,7 @@ let axisandscale = {
             }),
             legtitle: objForProp("legtitle", "string", null, false, {
               label: "Legend Title",
+              expression:"optional",
               show: (x) => {
                 return x.dockeditemtype == 'legend';
               },
@@ -255,6 +256,12 @@ let axisandscale = {
               show: (a) => {
                 return (a.axislabelmode == 'tilted');
               }
+            },
+            axistitle:{
+              type:"string",
+              ref:"axistitle",
+              label:"Static Title",
+              expression:"optional"
             },
             fontsection: {
               type: "items",

@@ -178,21 +178,25 @@ export default function($element, layout) {
   bp.setProps(layout);
   //Theme Processing
   var app = qlik.currApp(this);
-  var theme = app.theme.getApplied().then(function(qtheme) {
-    if (typeof layout.theme == 'undefined') layout.theme = qtheme;
-    if (layout.theme.id != qtheme.id || bp.props == null) {
-      layout.theme = qtheme;
-      bp.setProps(layout);
-      //console.log(qtheme.getStyle('object', 'label.name', 'color'));
-      console.log(qtheme);
-      createPicassoWithStyle(self, layout, qtheme);
+  console.log(app.theme);
+  try{
+    var theme = app.theme.getApplied().then(function(qtheme) {
+      if (typeof layout.theme == 'undefined') layout.theme = qtheme;
+      if (layout.theme.id != qtheme.id || bp.props == null) {
+        layout.theme = qtheme;
+        bp.setProps(layout);
+        //console.log(qtheme.getStyle('object', 'label.name', 'color'));
+        console.log(qtheme);
+        createPicassoWithStyle(self, layout, qtheme);
+        redrawChart($element, layout, self, true);
+        updateData(layout, self, true, true);
 
-      redrawChart($element, layout, self, true);
-      updateData(layout, self, true, true);
+      }
 
-    }
-
-  });
+    });
+  }catch(e){
+    console.log("Could not load theme");
+  }
 
   /*this.backendApi.setCacheOptions({
     enabled: false

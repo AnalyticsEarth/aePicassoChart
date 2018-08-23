@@ -64,8 +64,6 @@ var createAxis = function(axisDef, hypercube, scalesDef, theme) {
 
     var axisTitle = {
       type: 'text',
-      /*text: hypercube[dimMes[0]][dimMes[1]].qFallbackTitle,*/
-      scale:axisDef.axisscale,
       displayOrder:1,
       show:titleShow,
       style: {
@@ -77,6 +75,14 @@ var createAxis = function(axisDef, hypercube, scalesDef, theme) {
       },
       dock: axisDef.axisdock
     };
+
+    if(typeof axisDef.axistitle == 'undefined' || axisDef.axistitle == ""){
+      axisTitle.scale = axisDef.axisscale;
+    }else{
+      axisTitle.text = axisDef.axistitle;
+    }
+
+
     var axis = {
       key: axisDef.axisdock + "_" + axisDef.axisscale,
       type: 'axis',

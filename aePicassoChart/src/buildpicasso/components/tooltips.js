@@ -53,7 +53,7 @@ let tooltipdata = function(data, hypercube){
 let rendertooltip = function(h, data){
   //Conform data to distilled list
   //console.log(data);
-  for(let i = data.length - 1; i >= 0; i--){
+  for(var i = data.length - 1; i >= 0; i--){
     //console.log(i);
     var f = data.filter((obj) => {return obj.key == data[i].key});
     //console.log(f);
@@ -90,7 +90,9 @@ let createTooltip = function(hypercube){
       displayOrder:100,
       settings:{
         content:({h, data}) => {return rendertooltip(h, data);},
-        extract:({node, resources}) => {return tooltipdata(node.data, hypercube);}
+        extract:({node, resources}) => {return tooltipdata(node.data, hypercube);},
+        appendTo: document.body,
+        afterShow:({element}) => {element.style.zIndex = 1000; }
       }
     };
 

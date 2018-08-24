@@ -58,7 +58,7 @@ var interactionsSetup = function(intDef, picassoprops) {
       });
     }
   }catch(e){
-    
+
   }
 
   return interactions;

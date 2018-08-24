@@ -18,7 +18,10 @@ Only developers need to use qExt
 1. Created the axis as a docked item
 1. Add a layer for each chart item needed, choice from (Line, Bar, Point, Pie, Grid)
 
-## Support in BETA v0.3.0 - 18/08/2018
+## Support in BETA v0.4
+* Tooltip now available for Bar, Point, Pie layers
+
+## Support in BETA v0.3
 * Update to webpack and babel for extension packaging
 * Support for Picasso.js theme settings and compliance to the Qlik Sense selected theme (colors, font size)
 * Reference Lines (on numeric axis)

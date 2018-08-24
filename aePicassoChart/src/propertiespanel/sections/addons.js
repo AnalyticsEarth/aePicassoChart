@@ -170,6 +170,19 @@ let addons = {
           }
         },
       }
+    },
+    tooltip:{
+      label:"Tooltip",
+      type:"items",
+      items:{
+        showtooltip:{
+          type: "boolean",
+          ref: "picassoprops.tooltip.show",
+          label: "Show Tooltip",
+          defaultValue: true
+        },
+
+      }
     }
   }
 };

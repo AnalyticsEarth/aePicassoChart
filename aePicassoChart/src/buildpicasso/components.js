@@ -1,6 +1,7 @@
 import createDockedItem from './components/dockeditems.js'
 import createLayer from './components/layers.js'
 import createRefLines from './components/refLines.js'
+import createTooltip from './components/tooltips.js'
 
 //Create Components
 var createComponents = function(picassoprops, hypercube, theme) {
@@ -26,6 +27,17 @@ var createComponents = function(picassoprops, hypercube, theme) {
     //retLayer[0].displayOrder = i;
     componentsArray.push.apply(componentsArray, refline);
   }
+
+  try{ //Old charts dont have this property to switch on tooltip.
+    if(picassoprops.tooltip.show){
+      let tooltip = createTooltip(hypercube);
+      componentsArray.push.apply(componentsArray, tooltip);
+    }
+  }catch(e){
+
+  }
+
+
 
 
   var brush = componentsArray.filter(x => x.type == 'brush-range');

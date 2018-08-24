@@ -1,6 +1,6 @@
 import pq from 'picasso-plugin-q';
 
-var interactionsSetup = function(intDef) {
+var interactionsSetup = function(intDef, picassoprops) {
   "use strict";
   let rangeRef = 'rangeY';
   var interactions = [{
@@ -40,6 +40,27 @@ var interactionsSetup = function(intDef) {
       }
     }
   }];
+
+  try { //Old charts dont have this property to switch on tooltip.
+    if (picassoprops.tooltip.show) {
+      interactions.push({
+        type: 'native',
+        events: {
+          mousemove(e) {
+            const tooltip = this.chart.component('tooltip-key');
+            tooltip.emit('show', e);
+          },
+          mouseleave(e) {
+            const tooltip = this.chart.component('tooltip-key');
+            tooltip.emit('hide');
+          }
+        }
+      });
+    }
+  }catch(e){
+    
+  }
+
   return interactions;
 };
 
@@ -89,4 +110,8 @@ var enableSelectionOnFirstDimension = function(that, chart, brush, layout) {
   return chartBrush;
 };
 
-export {interactionsSetup, mouseEventToRangeEvent, enableSelectionOnFirstDimension}
+export {
+  interactionsSetup,
+  mouseEventToRangeEvent,
+  enableSelectionOnFirstDimension
+}

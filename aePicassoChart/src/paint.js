@@ -92,7 +92,7 @@ var redrawChart = function($element, layout, self, first) {
     var collectionsDef = bp.createCollections(layout.qHyperCube);
     var scalesDef = bp.createScales(layout.picassoprops.scalesDef);
     var componentsDef = bp.createComponents(layout.picassoprops, layout.qHyperCube); //We need more than just the componentsdef so send whole picassoprops
-    var interactionsDef = bp.interactionsSetup({});
+    var interactionsDef = bp.interactionsSetup({}, layout.picassoprops);
 
 
     var settings = {

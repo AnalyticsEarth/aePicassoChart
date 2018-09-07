@@ -54,7 +54,19 @@ var createLayerLegend = function(legDef, hypercube, picassoprops){
   var data = [];
   var range = [];
   var layers = picassoprops.componentsDef.layers.forEach(y => {
-    if(y.layershow && y.legshow){
+    //Resolve the Layer legend show expression to a boolean
+    if(typeof y.legshow2 == "string"){
+      if(y.legshow2 == "-1" || y.legshow2 == "" || y.legshow2 == "True"){
+        y.legshowbool = true;
+      }else{
+        y.legshowbool = false;
+      }
+    }else{
+      y.legshowbool = true;
+    }
+
+
+    if(y.layershowbool && y.legshowbool){
       var titletext = y.layertitle;
       if(typeof y.layertitle == "undefined" || y.layertitle == "" ){
         titletext = y.layername;

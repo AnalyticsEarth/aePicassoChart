@@ -47,19 +47,19 @@ let layeritems = {
             label: "Layer Name",
           },
           layershow: {
-            type: "boolean",
-            ref: "layershow",
+            type: "string",
+            ref: "layershow2",
+            expression: "always",
             label: "Show Layer",
-            defaultValue: true,
           },
           legshow: {
-            type: "boolean",
-            ref: "legshow",
+            type: "string",
+            ref: "legshow2",
+            expression: "always",
             label: "Show In Legend",
             show: (y) => {
               return !~["pie", "grid"].indexOf(y.layertype);
             }, //Not for pie and grid
-            defaultValue: true
           },
           layertitle: {
             type: "string",

@@ -4,7 +4,7 @@ var createLine = function(lineDef) {
   var line = {
     key: lineDef.layername, //this needs to be unique
     type: 'line',
-    show:lineDef.layershow,
+    show: lineDef.layershowbool,
     data: {
       collection: 'hypercubeCollection'
     },

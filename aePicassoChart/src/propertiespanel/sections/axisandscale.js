@@ -90,6 +90,7 @@ let axisandscale = {
           type: "string",
           ref: "scaleinclude",
           label: "Include Values (sep with ,)",
+          expression:"optional",
           defaultValue: '',
           show: (x) => {
             return (x.scalefield.split("/")[0] == "qMeasureInfo")
@@ -99,6 +100,7 @@ let axisandscale = {
           type: "number",
           ref: "scaleexpand",
           label: "Expand Scale",
+          expression:"optional",
           defaultValue: 0,
           show: (x) => {
             return (x.scalefield.split("/")[0] == "qMeasureInfo")

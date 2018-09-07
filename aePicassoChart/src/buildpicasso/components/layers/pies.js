@@ -3,6 +3,7 @@ import {colorForTheme} from '../../functions.js'
 var createPie = function(pieDef) {
   var pie = {
     type: 'pie',
+    show: pieDef.layershowbool,
     data: {
       collection: 'hypercubeCollection'
     },

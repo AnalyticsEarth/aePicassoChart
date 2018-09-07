@@ -18,7 +18,7 @@ var createBox = function(boxDef) {
   var box = {
     key: boxDef.layername, //this needs to be unique
     type: 'box',
-    show: boxDef.layershow,
+    show: boxDef.layershowbool,
     data: {
       //collection: 'hypercubeCollection',
       extract: {

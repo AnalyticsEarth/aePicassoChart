@@ -4,7 +4,7 @@ var createPoint = function(pointDef) {
   var point = {
     key: pointDef.layername, //this needs to be unique
     type: 'point',
-    show: pointDef.layershow,
+    show: pointDef.layershowbool,
     data: {
       collection: 'hypercubeCollection'
     },

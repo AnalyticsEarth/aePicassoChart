@@ -5,6 +5,21 @@ import createPoint from './layers/points.js'
 import createGrid from './layers/grids.js'
 
 var createLayer = function(layerDef) {
+
+  //console.log(layerDef.layershow);
+  if(typeof layerDef.layershow2 == "string"){
+    if(layerDef.layershow2 == "-1" || layerDef.layershow2 == "" || layerDef.layershow2 == "True"){
+      //console.log("Changing to true");
+      layerDef.layershowbool = true;
+    }else{
+      //console.log("Changing to false");
+      layerDef.layershowbool = false;
+    }
+  }else{
+    layerDef.layershowbool = true;
+  }
+
+
   if (layerDef.layername != '') {
     if (layerDef.layertype == "line") {
       return createLine(layerDef);

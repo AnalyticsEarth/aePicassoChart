@@ -101,7 +101,7 @@ var redrawChart = function($element, layout, self, first) {
       components: componentsDef,
       interactions: interactionsDef
     };
-    console.log(settings);
+    //console.log(JSON.stringify(settings));
 
     /*****************************************************************************************************
     /*** Having to recreate the chart as when updating the settings the line layer does not refresh (might be bug in picasso)
@@ -171,6 +171,8 @@ var updateData = function(layout, self, getNewData) {
       }]
     });
   }
+  console.log("Data");
+  console.log(self.chart.dataset(0));
 };
 
 export default function($element, layout) {

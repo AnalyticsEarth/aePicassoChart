@@ -72,16 +72,20 @@ let axisandscale = {
               label: "Linear"
             },
             {
-              value: "ordinal",
-              label: "Ordinal"
+              value: "band",
+              label: "Band"
             },
             {
-              value: "color",
-              label: "Color"
+              value: "sequential-color",
+              label: "Sequential Color"
             },
             {
               value: "categorical-color",
               label: "Categorical Color"
+            },
+            {
+              value: "threshold-color",
+              label: "Threshold Color"
             }
           ],
           defaultValue: ""
@@ -90,6 +94,7 @@ let axisandscale = {
           type: "string",
           ref: "scaleinclude",
           label: "Include Values (sep with ,)",
+          expression:"optional",
           defaultValue: '',
           show: (x) => {
             return (x.scalefield.split("/")[0] == "qMeasureInfo")
@@ -99,6 +104,7 @@ let axisandscale = {
           type: "number",
           ref: "scaleexpand",
           label: "Expand Scale",
+          expression:"optional",
           defaultValue: 0,
           show: (x) => {
             return (x.scalefield.split("/")[0] == "qMeasureInfo")
@@ -117,6 +123,62 @@ let axisandscale = {
             return (x.scalefield.split("/")[0] == "qDimensionInfo")
           }
         },
+        colormin: {
+          type: "string",
+          ref: "colormin",
+          label: "Color Minimum (optional)",
+          expression:"optional",
+          defaultValue: "",
+          show: (x) => {
+            return (x.scaletype == "sequential-color")
+          }
+        },
+        colormax: {
+          type: "string",
+          ref: "colormax",
+          label: "Color Maximum (optional)",
+          expression:"optional",
+          defaultValue: "",
+          show: (x) => {
+            return (x.scaletype == "sequential-color")
+          }
+        },
+        colorrange: {
+          type: "string",
+          ref: "colorrange",
+          label: "Color Range",
+          expression:"optional",
+          defaultValue: "",
+          show: (x) => {
+            return (x.scaletype == "sequential-color" || x.scaletype == "threshold-color" || x.scaletype == "categorical-color")
+          }
+        },
+        colorrangehint:{
+          component: "text",
+          style:"hint",
+          label:"Range should be hex colors values delimetered by ;, Threshold should have one per domain level, categorical should have one per data value",
+          show: (x) => {
+            return (x.scaletype == "sequential-color" || x.scaletype == "threshold-color" || x.scaletype == "categorical-color")
+          }
+        },
+        colordomain: {
+          type: "string",
+          ref: "colordomain",
+          label: "Color Domain",
+          expression:"optional",
+          defaultValue: "",
+          show: (x) => {
+            return (x.scaletype == "threshold-color")
+          }
+        },
+        colordomainhint:{
+          component: "text",
+          style:"hint",
+          label:"Domain should be values for the threshold levels delimetered by ;",
+          show: (x) => {
+            return (x.scaletype == "threshold-color")
+          }
+        }
       }
     },
     axis: {

@@ -18,7 +18,7 @@ var createBox = function(boxDef) {
   var box = {
     key: boxDef.layername, //this needs to be unique
     type: 'box',
-    show: boxDef.layershow,
+    show: boxDef.layershowbool,
     data: {
       //collection: 'hypercubeCollection',
       extract: {
@@ -119,7 +119,9 @@ var createBox = function(boxDef) {
     box.settings.box.strokeWidth = boxDef.primarywidth;
 
     //if (typeof boxDef.secondarycolor != 'undefined')
-    box.settings.box.fill = colorForTheme(boxDef.secondarycolor);
+    if(typeof box.settings.box.fill == 'undefined'){
+      box.settings.box.fill = colorForTheme(boxDef.secondarycolor);
+    }
 
     //Line
     if (typeof boxDef.thirdcolor != 'undefined')

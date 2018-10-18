@@ -3,7 +3,7 @@ import {colorForTheme} from '../../functions.js'
 var createGrid = function(gridDef) {
   var grid = {
     type: 'grid-line',
-    show: gridDef.layershow,
+    show: gridDef.layershowbool,
     ticks: { // Optional
       show: gridDef.showgridtickmajor,
     },

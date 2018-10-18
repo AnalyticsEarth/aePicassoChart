@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "picasso-plugin-q": "^0.12.0",
-    "picasso.js": "^0.12.0"
+    "picasso.js": "^0.12.0",
+    "regression": "^2.0.1"
   }
 }

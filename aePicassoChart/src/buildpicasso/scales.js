@@ -60,6 +60,20 @@ var createScales = function(scalesDef) {
     if (scale.scaletype != "") {
       scalesObj[scale.scalename].type = scale.scaletype;
     }
+
+    if(scale.scaletype == "threshold-color"){
+      scalesObj[scale.scalename].domain = scale.colordomain.split(";").map(x => parseInt(x));
+      scalesObj[scale.scalename].range = scale.colorrange.split(";");
+      delete scalesObj[scale.scalename].data;
+    }
+
+    if(scale.scaletype == "categorical-color"){
+      //scalesObj[scale.scalename].domain = scale.colordomain.split(";");
+      scalesObj[scale.scalename].range = scale.colorrange.split(";");
+    }
+
+    console.log(scalesObj[scale.scalename]);
+
   });
   return scalesObj;
 };
